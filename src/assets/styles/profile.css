@@ -1,0 +1,30 @@
+.avatar {
+    vertical-align: middle;
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+    margin: auto;
+    padding: 10px;
+    margin-right: 50%;
+}
+
+
+li .d-block {
+    font-size: 23px !important;
+}
+
+.mx-4 .nav-link {
+    font-size: 15px !important;
+}
+
+.active-select-profile {
+    color: #0275d8 !important;
+    font-weight: bold !important;
+    text-decoration: underline !important;
+}
+
+.mx-4 .nav-link:hover {
+    color: #0275d8 !important;
+    font-weight: bold !important;
+    text-decoration: underline !important;
+}

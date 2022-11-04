@@ -1,0 +1,33 @@
+#img-transaction {
+    float: right;
+}
+
+.avatar {
+    vertical-align:middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+#card-add-book {
+    cursor: default;
+}
+.image-add-book {
+    margin-top: 120px;
+    opacity: 0.2;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.image-add-book:hover {
+    opacity: 0.9;
+}
+
+.card-add-book {
+    height: 72vh;
+}
+
+#bookmarkContainer {
+    position: relative;
+    top: -80px;
+    right: 5px;
+}

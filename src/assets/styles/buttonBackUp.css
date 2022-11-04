@@ -1,0 +1,36 @@
+#button-up {
+    background-color: #5cb85c;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s, 
+      opacity .5s, visibility .5s;
+    opacity: 1;
+    z-index: 100;
+    display: none;
+  }
+  
+  #button-up span {
+    font-weight: normal;
+    font-style: normal;
+    font-size: 2em;
+    line-height: 50px;
+    color: #161c2d;
+  }
+  #button-up:hover {
+    cursor: pointer;
+    background-color: #f1f4f8;
+    border: 1px solid #161c2d;
+  }
+  #button-up:active {
+    background-color: #f1f4f8;
+  }
+  #button-up.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  

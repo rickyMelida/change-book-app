@@ -1,0 +1,62 @@
+.navbar-nav .dropdown-menu{
+  border: none;
+  background: #f3f2f2;
+}
+
+.carousel-inner {
+  height: 70vh;
+}
+
+.carousel-item img {
+  max-width: 500px;
+  height: auto;
+  margin: auto;
+  background-attachment: fixed;
+}
+
+.view-all {
+  font-size: 21px;
+}
+
+.bg-recent {
+  background-color: #9fd3c7 !important;
+}
+
+.line-horizontal {
+  background-color: #485461;
+background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+}
+
+.card {
+  cursor: pointer;
+}
+
+.icon-users {
+  display: initial;
+}
+
+.users-details {
+  display: none !important;
+}
+
+@media (max-width: 990px) {
+  .icon-users {
+    display: none;
+  }
+
+  .users-details {
+    display: initial !important;
+  }
+  
+}
+
+@media (max-width: 768px) {
+  .card {
+    margin: 15px 0 15px -35px;
+  }
+}
+
+/*
+#img-favorite {
+  padding-left: 50%;
+}*/

@@ -1,0 +1,14 @@
+#search-result {
+    right: 0;
+    margin-right: 17%;
+    z-index: 100;
+    width: 20%;
+    top: 8%;
+    margin-top: -4px;
+    background: #fff;
+}
+
+
+#search-result div {
+    /*margin-left: 45%;*/
+}

@@ -1,0 +1,9 @@
+.image-to-show {
+    border: 3px solid blue;
+}
+
+@media (max-width: 1200px) {
+    #book-image1 {
+        margin-left: 10% !important;
+    }
+}
