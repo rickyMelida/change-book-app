@@ -4,7 +4,7 @@ import { Card } from '../common/Card';
 import libro from '../../../assets/images/books/libro6.jpg';
 import avatar from '../../../assets/images/avatar.svg';
 
-export const MyBooks = () => {
+export const Favorites = () => {
 	const data = {
 		id: 6,
 		title: 'ESCUELA DE TRADING',
@@ -26,7 +26,7 @@ export const MyBooks = () => {
 			<div className='container'>
 				<div className='row my-5'>
 					<div className='col-md-4 py-3'>
-						<h2>Mis Libros</h2>
+						<h2>Mis Libros Favoritos</h2>
 					</div>
 					<hr />
 				</div>

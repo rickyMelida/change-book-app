@@ -5,6 +5,7 @@ import { Card } from "../common/Card";
 import libro from "../../../assets/images/books/libro6.jpg";
 import avatar from "../../../assets/images/avatar.svg";
 import { Slider } from "./Slider";
+import { Footer } from '../common/Footer';
 
 export const Main = () => {
   const data = {
@@ -27,8 +28,46 @@ export const Main = () => {
       <Header />
       <ButtonUp />
       <div className="container-fluid">
-        <Slider />
-        <Card bookData={data} />
+
+        <div className="row">
+          <div className="col-12">
+            <Slider />
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-10 offset-2 col-sm-9 offset-sm-3 col-md-5 offset-md-1 col-xl-3 offset-xl-0 py-3">
+            <Card bookData={data} />
+          </div>
+          <div className="col-10 offset-2 col-sm-9 offset-sm-3 col-md-5 offset-md-1 col-xl-3 offset-xl-0 py-3">
+            <Card bookData={data} />
+          </div>
+          <div className="col-10 offset-2 col-sm-9 offset-sm-3 col-md-5 offset-md-1 col-xl-3 offset-xl-0 py-3">
+            <Card bookData={data} />
+          </div>
+          <div className="col-10 offset-2 col-sm-9 offset-sm-3 col-md-5 offset-md-1 col-xl-3 offset-xl-0 py-3">
+            <Card bookData={data} />
+          </div>
+          <div className="col-10 offset-2 col-sm-9 offset-sm-3 col-md-5 offset-md-1 col-xl-3 offset-xl-0 py-3">
+            <Card bookData={data} />
+          </div>
+          <div className="col-10 offset-2 col-sm-9 offset-sm-3 col-md-5 offset-md-1 col-xl-3 offset-xl-0 py-3">
+            <Card bookData={data} />
+          </div>
+          <div className="col-10 offset-2 col-sm-9 offset-sm-3 col-md-5 offset-md-1 col-xl-3 offset-xl-0 py-3">
+            <Card bookData={data} />
+          </div>
+          <div className="col-10 offset-2 col-sm-9 offset-sm-3 col-md-5 offset-md-1 col-xl-3 offset-xl-0 py-3">
+            <Card bookData={data} />
+          </div>
+        </div>
+
+      <div className="row">
+        <div className="col-12">
+          <Footer />
+        </div>
+      </div>
+
       </div>
     </>
   );

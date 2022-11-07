@@ -1,4 +1,3 @@
-import React from "react";
 import book1 from "./libro1.jpg";
 import book2 from "./libro2.jpg";
 import book3 from "./libro3.jpg";
