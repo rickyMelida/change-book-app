@@ -10,7 +10,7 @@ export const Header = () => {
 			<header id='home'>
 				<nav className='navbar navbar-expand-lg bg-light'>
 					<div className='container-fluid'>
-						<a className='navbar-brand' title='Inicio' href='/home'>
+						<a className='navbar-brand' title='Inicio' href='/'>
 							<img src={book} alt='Book Change' width='50' />
 						</a>
 						<button
@@ -35,7 +35,6 @@ export const Header = () => {
 					</div>
 				</nav>
 			</header>
-
 		</>
 	);
 };

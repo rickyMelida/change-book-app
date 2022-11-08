@@ -9,7 +9,7 @@ export const Navbar = () => {
 						className='nav-link active c-pointer'
 						aria-current='page'
 						id='home-item'
-            href='/home'
+						href='/'
 					>
 						Home
 					</a>
@@ -50,11 +50,7 @@ export const Navbar = () => {
 				</li>
 
 				<li className='nav-item'>
-					<a
-						className='nav-link'
-						id='contacts-item'
-						href='/contacts'
-					>
+					<a className='nav-link' id='contacts-item' href='/contacts'>
 						Contactos
 					</a>
 				</li>

@@ -6,4 +6,6 @@ import wishList from './wish_list.svg';
 import message from './message.svg';
 import user from './user.svg';
 
-export { facebook, instagram, twitter, wishList, message, user };
+import book from './book.png';
+
+export { facebook, instagram, twitter, wishList, message, user, book };
