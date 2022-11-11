@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { book } from '../../assets/images/images';
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 
 const Login = () => {
 	const email = useRef();
@@ -10,7 +10,7 @@ const Login = () => {
 		e.preventDefault();
 		console.log(email.current.value, password.current.value);
         if(email.current.value === 'admin@gmail.com' && password.current.value === '12345') {
-            return <Redirect to='/'/>
+            // return <Redirect to='/'/>
         }
 	};
 

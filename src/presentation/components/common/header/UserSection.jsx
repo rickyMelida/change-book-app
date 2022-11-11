@@ -12,7 +12,7 @@ export const UserSection = () => {
 				</span>
 
 				<span className='mx-3'>
-					<a href='/#' id='messages-item' title='Mensajes'>
+					<a href='/messages' id='messages-item' title='Mensajes'>
 						<img src={message} width='30' alt='message' />
 					</a>
 				</span>

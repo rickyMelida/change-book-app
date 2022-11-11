@@ -79,17 +79,17 @@ export const Navbar = () => {
 							</a>
 						</li>
 						<li>
-							<a className='dropdown-item' id='favourite-item'>
+							<a className='dropdown-item' id='favourite-item' href='/favorites'>
 								Favoritos
 							</a>
 						</li>
 						<li>
-							<a className='dropdown-item' id='messages-item'>
+							<a className='dropdown-item' id='messages-item' href='/messages'> 
 								Mensajes
 							</a>
 						</li>
 						<li>
-							<a className='dropdown-item' id='others-item' href='#otros'>
+							<a className='dropdown-item' id='others-item' href='/logout'>
 								Cerrar Sesion
 							</a>
 						</li>

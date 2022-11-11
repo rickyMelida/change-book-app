@@ -8,4 +8,6 @@ import user from './user.svg';
 
 import book from './book.png';
 
-export { facebook, instagram, twitter, wishList, message, user, book };
+import avatar from './avatar.svg';
+
+export { facebook, instagram, twitter, wishList, message, user, book, avatar };
