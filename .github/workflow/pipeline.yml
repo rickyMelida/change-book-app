@@ -1,0 +1,16 @@
+name: Deploy Change Book Front
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build
+        env:
+          NETLIFY_SIT_IO: ${{ secrets.NETLIFY_SIT_IO }}\
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
