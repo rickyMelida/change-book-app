@@ -7,6 +7,7 @@ import { MyBookPage } from './pages/MyBooks.page';
 import { FavoritesPage } from './pages/Favorites.page';
 import { MessagesPage } from './pages/Messages.page';
 import Login from './presentation/components/Login';
+import { EmailVerify } from './presentation/components/EmailVerify';
 
 export function App() {
 	return (
@@ -19,6 +20,7 @@ export function App() {
 					<Route path='/my-books' element={<MyBookPage />} />
 					<Route path='/my-favorites' element={<FavoritesPage />} />
 					<Route path='/messages' element={<MessagesPage />} />
+					<Route path='/email' element={<EmailVerify />} />
 				</Routes>
 			</Router>
 		</>
