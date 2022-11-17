@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Scrollspy from 'react-scrollspy';
 
 export const Navbar = () => {
 	return (
@@ -11,7 +13,9 @@ export const Navbar = () => {
 						id='home-item'
 						href='/'
 					>
-						Home
+						<Link to='/' style={{ color: 'gray', textDecoration: 'none' }}>
+							Home
+						</Link>
 					</a>
 				</li>
 
@@ -27,37 +31,54 @@ export const Navbar = () => {
 						Libros
 					</a>
 					<ul className='dropdown-menu' aria-labelledby='navbarDropdown'>
-						<li>
-							<a
-								className='dropdown-item'
-								id='highlighted-item'
-								href='#destacados'
-							>
-								Destacados
-							</a>
-						</li>
-						<li>
-							<a className='dropdown-item' id='recent-item' href='#recientes'>
-								Recientes
-							</a>
-						</li>
-						<li>
-							<a className='dropdown-item' id='others-item' href='#otros'>
-								Otros
-							</a>
-						</li>
+						<Scrollspy>
+							<li>
+								<a
+									className='dropdown-item'
+									id='highlighted-item'
+									href='#outstanding'
+								>
+									Destacados
+								</a>
+							</li>
+
+							<li>
+								<a className='dropdown-item' id='recent-item' href='#recents'>
+									Recientes
+								</a>
+							</li>
+
+							<li>
+								<a className='dropdown-item' id='others-item' href='#others'>
+									Otros
+								</a>
+							</li>
+						</Scrollspy>
 					</ul>
 				</li>
 
 				<li className='nav-item'>
 					<a className='nav-link' id='contacts-item' href='/contacts'>
-						Contactos
+						<Link
+							to='/contacts'
+							style={{ color: 'gray', textDecoration: 'none' }}
+						>
+							Contactos
+						</Link>
 					</a>
 				</li>
-
 				<li className='nav-item'>
-					<a className='nav-link' id='my-book-item' href='/my-books'>
-						Mis Libros
+					<a
+						className='nav-link text-danger'
+						id='my-book-item'
+						href='/my-books'
+					>
+						<Link
+							to='/my-books'
+							style={{ color: 'gray', textDecoration: 'none' }}
+						>
+							Mis Libros
+						</Link>
 					</a>
 				</li>
 
@@ -79,12 +100,16 @@ export const Navbar = () => {
 							</a>
 						</li>
 						<li>
-							<a className='dropdown-item' id='favourite-item' href='/favorites'>
+							<a
+								className='dropdown-item'
+								id='favourite-item'
+								href='/favorites'
+							>
 								Favoritos
 							</a>
 						</li>
 						<li>
-							<a className='dropdown-item' id='messages-item' href='/messages'> 
+							<a className='dropdown-item' id='messages-item' href='/messages'>
 								Mensajes
 							</a>
 						</li>

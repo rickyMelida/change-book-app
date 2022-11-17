@@ -5,7 +5,7 @@ import { Header } from '../presentation/components/common/header/Header';
 export const MessagesPage = () => {
 	return (
 		<>
-			<Header />
+			{/* <Header /> */}
 			<Message />
 		</>
 	);

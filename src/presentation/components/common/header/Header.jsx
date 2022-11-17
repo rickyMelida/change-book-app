@@ -3,6 +3,7 @@ import { Navbar } from './Navbar';
 import { InputSearch } from './InputSearch';
 import { UserSection } from './UserSection';
 import book from '../../../../assets/images/book.png';
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
 	return (
@@ -12,6 +13,7 @@ export const Header = () => {
 					<div className='container-fluid'>
 						<a className='navbar-brand' title='Inicio' href='/'>
 							<img src={book} alt='Book Change' width='50' />
+							<Link to='/'></Link>
 						</a>
 						<button
 							className='navbar-toggler'

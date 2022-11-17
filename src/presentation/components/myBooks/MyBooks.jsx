@@ -21,7 +21,7 @@ export const MyBooks = () => {
 	};
 	return (
 		<>
-			<Header />
+			{/* <Header /> */}
 
 			<div className='container'>
 				<div className='row my-5'>
