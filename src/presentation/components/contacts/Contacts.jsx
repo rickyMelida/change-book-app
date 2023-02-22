@@ -5,7 +5,7 @@ import { Footer } from '../common/Footer';
 export const Contacts = () => {
 	return (
 		<>
-			{/* <Header /> */}
+			<Header />
 			<Form />
 			<Footer />
 		</>

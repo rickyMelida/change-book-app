@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { book } from '../../assets/images/images';
 import { signin } from '../../services/auth.service';
-import Swal from 'sweetalert2';
 
 const setCredentialInLocalStoragge = userData => {
 	localStorage.setItem('uid', JSON.stringify(userData));

@@ -8,7 +8,6 @@ import { FavoritesPage } from './pages/Favorites.page';
 import { MessagesPage } from './pages/Messages.page';
 import Login from './presentation/components/Login';
 import { EmailVerify } from './presentation/components/EmailVerify';
-import { Header } from './presentation/components/common/header/Header';
 import { BookDetails } from './presentation/components/BookDetails';
 import { Profile } from './pages/Profile.page';
 

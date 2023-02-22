@@ -21,8 +21,7 @@ export const Favorites = () => {
 	};
 	return (
 		<>
-		{/* 	<Header /> */}
-
+			<Header />
 			<div className='container'>
 				<div className='row my-5'>
 					<div className='col-md-4 py-3'>

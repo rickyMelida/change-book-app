@@ -1,7 +1,4 @@
 import React from 'react';
-import { Chat } from './Chat';
-import { UserInfo } from './UserInfo';
-import { FieldSearch } from './FieldSearch';
 import { avatar } from '../../../assets/images/images';
 
 export const Message = () => {
