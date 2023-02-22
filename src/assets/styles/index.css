@@ -35,6 +35,10 @@ background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
   display: initial;
 }
 
+.icon-users .icon img{
+  margin-top: -25px;
+}
+
 .users-details {
   display: none !important;
 }

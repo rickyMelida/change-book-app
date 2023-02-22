@@ -5,5 +5,6 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import { App } from "./App";
 import './assets/styles/styles.css'
 
+const auth = localStorage.getItem('uid');
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+root.render(<App auth={auth ? 'si' : 'no'}/>);

@@ -9,5 +9,20 @@ import user from './user.svg';
 import book from './book.png';
 
 import avatar from './avatar.svg';
+import starGray from './estrella_gris.png';
+import starYellow from './estrella_amarilla.png';
+import logout from './logout.png';
 
-export { facebook, instagram, twitter, wishList, message, user, book, avatar };
+export {
+	facebook,
+	instagram,
+	twitter,
+	wishList,
+	message,
+	user,
+	book,
+	avatar,
+	starGray,
+	starYellow,
+	logout
+};

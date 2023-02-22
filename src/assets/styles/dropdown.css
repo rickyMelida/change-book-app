@@ -11,6 +11,11 @@
     cursor: pointer;
   }
   
+  .dropbtn img {
+    border-radius: 50% !important;
+
+  }
+  
   .dropdown {
     position: relative;
     display: inline-block;

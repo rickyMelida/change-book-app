@@ -1,17 +1,32 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { book } from '../../assets/images/images';
-// import { Redirect } from 'react-router-dom'
+import { signin } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
-const Login = () => {
-	const email = useRef();
-	const password = useRef();
+const setCredentialInLocalStoragge = userData => {
+	localStorage.setItem('uid', JSON.stringify(userData));
+};
+
+const Login = ({ message }) => {
+	const emailValue = useRef();
+	const passwordValue = useRef();
+	const [alert, setAlert] = useState('');
 
 	const getData = e => {
 		e.preventDefault();
-		console.log(email.current.value, password.current.value);
-        if(email.current.value === 'admin@gmail.com' && password.current.value === '12345') {
-            // return <Redirect to='/'/>
-        }
+		const [email, password] = [
+			emailValue.current.value,
+			passwordValue.current.value,
+		];
+
+		signin({ email, password }).then(data => {
+			if (data.error) {
+				setAlert(data.message);
+			} else {
+				setCredentialInLocalStoragge(data);
+				window.location.reload(true);
+			}
+		});
 	};
 
 	return (
@@ -32,16 +47,16 @@ const Login = () => {
 
 						<form onSubmit={e => getData(e)} className='border border-dark p-4'>
 							<div className='form-group py-2'>
-								<label htmlFor='email' className='font-weight-bold'>
+								<label htmlFor='emailValue' className='font-weight-bold'>
 									Correo
 								</label>
 								<input
-									type='email'
+									type='emailValue'
 									className='form-control'
-									id='email'
-									aria-describedby='emailHelp'
+									id='emailValue'
+									aria-describedby='emailValueHelp'
 									autoComplete='disabled'
-									ref={email}
+									ref={emailValue}
 								/>
 							</div>
 							<div className='form-group py-2'>
@@ -52,7 +67,7 @@ const Login = () => {
 									type='password'
 									className='form-control'
 									id='password'
-									ref={password}
+									ref={passwordValue}
 								/>
 							</div>
 							<button
@@ -66,7 +81,7 @@ const Login = () => {
 							<hr className='line-horizontal my-5' />
 							<div className='mt-4'>
 								<small
-									id='emailHelp'
+									id='emailValueHelp'
 									className='form-text text-muted d-flex justify-content-center'
 								>
 									¿Eres nuevo por aqui? &nbsp; <br />
@@ -75,10 +90,15 @@ const Login = () => {
 							</div>
 						</form>
 						<div
-							className='alert alert-danger my-3 text-center d-none'
-							id='error'
+							className={
+								alert === ''
+									? 'alert alert-danger my-5 text-center d-none'
+									: 'alert alert-danger my-5 text-center'
+							}
 							role='alert'
-						></div>
+						>
+							{alert}
+						</div>
 					</div>
 					<div className='col-md-4'></div>
 				</div>

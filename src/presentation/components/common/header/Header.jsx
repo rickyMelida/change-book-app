@@ -1,11 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Navbar } from './Navbar';
 import { InputSearch } from './InputSearch';
 import { UserSection } from './UserSection';
 import book from '../../../../assets/images/book.png';
-import { Link } from 'react-router-dom';
+import { getUserData } from '../../../../services/user.service';
 
 export const Header = () => {
+	const userData = getUserData();
+	// const navigate = use
 	return (
 		<>
 			<header id='home'>
@@ -32,7 +35,7 @@ export const Header = () => {
 						>
 							<Navbar />
 							<InputSearch />
-							<UserSection />
+							<UserSection userData={userData}/>
 						</div>
 					</div>
 				</nav>
