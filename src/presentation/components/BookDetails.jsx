@@ -9,11 +9,10 @@ import {
 } from '../../assets/images/images';
 import { Header } from './common/header/Header';
 
-export const BookDetails = () => {
-	console.log(localStorage.getItem('id'));
+export const BookDetails = ({auth}) => {
 	return (
 		<>
-			<Header />
+			<Header auth={auth}/>
 			<div className='container'>
 				<div className='row'>
 					<div

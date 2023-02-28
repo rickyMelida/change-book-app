@@ -5,8 +5,18 @@ import { Footer } from '../common/Footer';
 import { Others } from '../../sections/Others';
 import { Outstanding } from '../../sections/Outstanding';
 import { Recent } from '../../sections/Recent';
+import { getBooks } from '../../../services/books.service';
 
 export const Main = () => {
+	let recent, features, others;
+
+	getBooks()
+		.then(res => {
+			[recent, features, others] = res;
+		})
+		.catch(err => {
+			console.log(err);
+		});
 	return (
 		<>
 			<ButtonUp />
@@ -18,9 +28,9 @@ export const Main = () => {
 				</div>
 
 				<div className='row'>
-					<Outstanding />
-					<Recent />
-					<Others />
+					<Outstanding data={features.data} />
+					<Recent data={recent.data} />
+					<Others data={others.data} />
 				</div>
 
 				<div className='row'>

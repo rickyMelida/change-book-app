@@ -1,5 +1,10 @@
 export const getUserData = () => {
-	const { userData } = JSON.parse(localStorage.getItem('uid'));
+	try{
 
-	return userData;
+		const { userData } = JSON.parse(localStorage.getItem('uid'));
+		return userData;
+	}catch(err) {
+		return '';
+	}
+
 };

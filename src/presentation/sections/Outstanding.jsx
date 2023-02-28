@@ -1,11 +1,9 @@
 import React from 'react';
 import { TitleSection } from '../components/common/TitleSection';
 import { Card } from '../components/common/Card';
-import libro from '../../assets/images/books/libro6.jpg';
-import avatar from '../../assets/images/avatar.svg';
 
-export const Outstanding = () => {
-	const data = {
+export const Outstanding = ({ data }) => {
+	/* const data = {
 		id: 6,
 		title: 'ESCUELA DE TRADING',
 		author: 'FRANCISCA SERRANO',
@@ -18,12 +16,18 @@ export const Outstanding = () => {
 			name: 'Johan Doe',
 			avatar,
 		},
-	};
+	}; */
 	return (
 		<>
 			<div className='row bg-light my-5' id='outstanding'>
 				<TitleSection name={'Recientes'} />
-				<div className='col-10 offset-2 col-sm-9 offset-sm-3 col-md-5 offset-md-1 col-xl-3 offset-xl-0 py-3'>
+				{data.forEach(element => {
+					<div className='col-10 offset-2 col-sm-9 offset-sm-3 col-md-5 offset-md-1 col-xl-3 offset-xl-0 py-3'>
+						<Card bookData={element} />
+					</div>;
+				})}
+
+				{/* <div className='col-10 offset-2 col-sm-9 offset-sm-3 col-md-5 offset-md-1 col-xl-3 offset-xl-0 py-3'>
 					<Card bookData={data} />
 				</div>
 
@@ -33,11 +37,7 @@ export const Outstanding = () => {
 
 				<div className='col-10 offset-2 col-sm-9 offset-sm-3 col-md-5 offset-md-1 col-xl-3 offset-xl-0 py-3'>
 					<Card bookData={data} />
-				</div>
-
-				<div className='col-10 offset-2 col-sm-9 offset-sm-3 col-md-5 offset-md-1 col-xl-3 offset-xl-0 py-3'>
-					<Card bookData={data} />
-				</div>
+				</div> */}
 			</div>
 		</>
 	);

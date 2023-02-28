@@ -3,7 +3,7 @@ import bookmark from '../../../assets/images/bookmark.png';
 import { Link } from 'react-router-dom';
 
 export const Card = ({ bookData }) => {
-	const { title, state, by, imgUrl, userOwner } = bookData;
+	const { name, transactionType, price, images, userOwner } = bookData;
 
 	const redirectWhatsapp = () => {
 		window.open(
@@ -18,24 +18,24 @@ export const Card = ({ bookData }) => {
 			<div>
 				<div className='card' style={{ width: '18rem' }} id='book-8'>
 					<Link to='/details'>
-						<img src={imgUrl} className='card-img-top' height='350' />
+						<img src={images[0]} className='card-img-top' height='350' />
 					</Link>
 
 					<div className='card-body'>
 						<Link to='/details'>
 							<h5 className='card-title mb-5' style={{ maxHeight: '24px' }}>
-								{title}
+								{name}
 							</h5>
 							<hr className='mx-2' />
 
 							<p className='card-text'>
 								<div className='pb-2'>
 									<strong>Estado: </strong>
-									{state}
+									{transactionType}
 								</div>
 								<div className='py-2'>
 									<strong>Para: </strong>
-									{by}
+									{price}
 								</div>
 								<strong className='text-success d-block'></strong>
 							</p>
@@ -50,7 +50,7 @@ export const Card = ({ bookData }) => {
 						</button>
 
 						<section className='mt-4'>
-							<Link to='/user-profile'> 
+							<Link to='/user-profile'>
 								<img
 									src={userOwner.avatar}
 									alt='Avatar'

@@ -7,4 +7,4 @@ import './assets/styles/styles.css'
 
 const auth = localStorage.getItem('uid');
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App auth={auth ? 'si' : 'no'}/>);
+root.render(<App auth={auth ? 'Y' : 'N'}/>);

@@ -5,8 +5,9 @@ import { InputSearch } from './InputSearch';
 import { UserSection } from './UserSection';
 import book from '../../../../assets/images/book.png';
 import { getUserData } from '../../../../services/user.service';
+import { LoginIcon } from './LoginIcon';
 
-export const Header = () => {
+export const Header = ({ auth }) => {
 	const userData = getUserData();
 	// const navigate = use
 	return (
@@ -35,7 +36,11 @@ export const Header = () => {
 						>
 							<Navbar />
 							<InputSearch />
-							<UserSection userData={userData}/>
+							{auth === 'Y' ? (
+								<UserSection userData={userData} />
+							) : (
+								<LoginIcon />
+							)}
 						</div>
 					</div>
 				</nav>

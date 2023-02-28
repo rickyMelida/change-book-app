@@ -31,12 +31,12 @@ const UserAuthenticated = () => {
 	);
 };
 
-const UserUnauthenticated = () => {
+const UserUnauthenticated = auth => {
 	return (
 		<Router>
 			<Routes>
-				<Route index path='/' element={<HomePage />} />
-				<Route path='/details' element={<BookDetails />} />
+				<Route index path='/' element={<HomePage auth={auth} />} />
+				<Route path='/details' element={<BookDetails auth={auth} />} />
 				<Route path='*' element={<Login message={''} />} />
 			</Routes>
 		</Router>
@@ -44,9 +44,9 @@ const UserUnauthenticated = () => {
 };
 
 export function App({ auth }) {
-	if (auth === 'si') {
+	if (auth === 'Y') {
 		return UserAuthenticated();
 	} else {
-		return UserUnauthenticated();
+		return UserUnauthenticated(auth);
 	}
 }
