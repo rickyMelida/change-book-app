@@ -9,7 +9,7 @@ import { LoginIcon } from './LoginIcon';
 
 export const Header = ({ auth }) => {
 	const userData = getUserData();
-	// const navigate = use
+	console.log(auth);
 	return (
 		<>
 			<header id='home'>
@@ -34,7 +34,7 @@ export const Header = ({ auth }) => {
 							className='collapse navbar-collapse'
 							id='navbarSupportedContent'
 						>
-							<Navbar />
+							<Navbar auth={auth} />
 							<InputSearch />
 							{auth === 'Y' ? (
 								<UserSection userData={userData} />

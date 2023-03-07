@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ButtonUp } from '../common/ButtonUp';
 import { Slider } from './Slider';
 import { Footer } from '../common/Footer';
@@ -8,11 +8,9 @@ import { Recent } from '../../sections/Recent';
 import { getBooks } from '../../../services/books.service';
 
 export const Main = () => {
-	let recent, features, others;
-
 	getBooks()
 		.then(res => {
-			[recent, features, others] = res;
+			console.log(res);
 		})
 		.catch(err => {
 			console.log(err);
@@ -28,9 +26,9 @@ export const Main = () => {
 				</div>
 
 				<div className='row'>
-					<Outstanding data={features.data} />
-					<Recent data={recent.data} />
-					<Others data={others.data} />
+					<Outstanding data={'feature'} />
+					{/* <Recent data={recent} />
+					<Others data={others} /> */}
 				</div>
 
 				<div className='row'>

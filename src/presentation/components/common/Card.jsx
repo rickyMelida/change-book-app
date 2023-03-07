@@ -18,7 +18,7 @@ export const Card = ({ bookData }) => {
 			<div>
 				<div className='card' style={{ width: '18rem' }} id='book-8'>
 					<Link to='/details'>
-						<img src={images[0]} className='card-img-top' height='350' />
+						<img src={images} className='card-img-top' height='350' />
 					</Link>
 
 					<div className='card-body'>

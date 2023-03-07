@@ -36,8 +36,14 @@ const UserUnauthenticated = auth => {
 		<Router>
 			<Routes>
 				<Route index path='/' element={<HomePage auth={auth} />} />
-				<Route path='/details' element={<BookDetails auth={auth} />} />
-				<Route path='*' element={<Login message={''} />} />
+				<Route path='/contacts' element={<Login />} />
+				<Route path='/my-books' element={<Login />} />
+				<Route path='/my-favorites' element={<Login />} />
+				<Route path='/messages' element={<Login />} />
+				<Route path='/email' element={<Login />} />
+				<Route path='/user-profile' element={<Login />} />
+				<Route path='/details' element={<BookDetails />} />
+				<Route path='*' element={<HomePage auth={auth} />} />
 			</Routes>
 		</Router>
 	);

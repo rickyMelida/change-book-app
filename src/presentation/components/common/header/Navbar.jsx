@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Scrollspy from 'react-scrollspy';
 
-export const Navbar = () => {
+export const Navbar = ({ auth }) => {
 	return (
 		<>
 			<ul className='navbar-nav me-auto mb-2 mb-lg-0'>
@@ -67,20 +67,25 @@ export const Navbar = () => {
 						</Link>
 					</a>
 				</li>
-				<li className='nav-item'>
-					<a
-						className='nav-link text-danger'
-						id='my-book-item'
-						href='/my-books'
-					>
-						<Link
-							to='/my-books'
-							style={{ color: 'gray', textDecoration: 'none' }}
+
+				{auth === 'Y' ? (
+					<li className='nav-item'>
+						<a
+							className='nav-link text-danger'
+							id='my-book-item'
+							href='/my-books'
 						>
-							Mis Libros
-						</Link>
-					</a>
-				</li>
+							<Link
+								to='/my-books'
+								style={{ color: 'gray', textDecoration: 'none' }}
+							>
+								Mis Libros
+							</Link>
+						</a>
+					</li>
+				) : (
+					''
+				)}
 
 				<li className='nav-item dropdown users-details' id='users-details'>
 					<a
