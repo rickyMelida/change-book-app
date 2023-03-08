@@ -8,13 +8,22 @@ import { Recent } from '../../sections/Recent';
 import { getBooks } from '../../../services/books.service';
 
 export const Main = () => {
-	getBooks()
-		.then(res => {
-			console.log(res);
-		})
-		.catch(err => {
-			console.log(err);
-		});
+	const [feature, setFeature] = useState([]);
+	const [recent, setRecent] = useState([]);
+	const [others, setOthers] = useState([]);
+	useEffect(() => {
+		getBooks(5)
+			.then(res => {
+				const [featureData, recentData, othersData] = res;
+				setFeature(featureData);
+				setRecent(recentData);
+				setOthers(othersData);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}, [5]);
+
 	return (
 		<>
 			<ButtonUp />
@@ -26,9 +35,9 @@ export const Main = () => {
 				</div>
 
 				<div className='row'>
-					<Outstanding data={'feature'} />
-					{/* <Recent data={recent} />
-					<Others data={others} /> */}
+					<Outstanding data={feature} />
+					<Recent data={recent} />
+					<Others data={others} />
 				</div>
 
 				<div className='row'>

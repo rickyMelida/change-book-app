@@ -9,7 +9,6 @@ import { LoginIcon } from './LoginIcon';
 
 export const Header = ({ auth }) => {
 	const userData = getUserData();
-	console.log(auth);
 	return (
 		<>
 			<header id='home'>
