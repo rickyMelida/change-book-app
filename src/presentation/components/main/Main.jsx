@@ -35,9 +35,9 @@ export const Main = () => {
 				</div>
 
 				<div className='row'>
-					<Outstanding data={feature} />
-					<Recent data={recent} />
-					<Others data={others} />
+					<Outstanding featureData={feature} />
+					{/* <Recent data={recent} />
+					<Others data={others} /> */}
 				</div>
 
 				<div className='row'>
