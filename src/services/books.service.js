@@ -12,7 +12,7 @@ const getRecents = async amount => {
 	return await response.json();
 };
 
-const getFeatured = async amount => {
+export const getFeatured = async amount => {
 	const url = `${URL_API}book/getFeaturedBooks/amount=${amount}`;
 
 	const response = await fetch(url);
