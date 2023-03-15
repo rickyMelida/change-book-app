@@ -1,45 +1,22 @@
 import React from 'react';
 import { TitleSection } from '../components/common/TitleSection';
 import { Card } from '../components/common/Card';
-import libro from '../../assets/images/books/libro6.jpg';
-import avatar from '../../assets/images/avatar.svg';
 
-export const Others = () => {
-	const data = {
-		id: 6,
-		title: 'ESCUELA DE TRADING',
-		author: 'FRANCISCA SERRANO',
-		pages: 272,
-		state: 'Usado',
-		by: 'Vender',
-		imgUrl: libro,
-		price: '25.000',
-		userOwner: {
-			name: 'Johan Doe',
-			avatar,
-		},
-	};
+export const Others = ({ otherData }) => {
 	return (
 		<>
-        <div className="row bg-light my-5" id='others'>
+			<div className='row bg-light my-5' id='others'>
+				<TitleSection name={'Otros'} />
 
-			<TitleSection name={'Otros'}/>
-			<div className='col-10 offset-2 col-sm-9 offset-sm-3 col-md-5 offset-md-1 col-xl-3 offset-xl-0 py-3'>
-				<Card bookData={data} />
+				{otherData.map(element => (
+					<div
+						className='col-10 offset-2 col-sm-9 offset-sm-3 col-md-5 offset-md-1 col-xl-3 offset-xl-0 py-3'
+						key={element.userId}
+					>
+						<Card bookData={element} />
+					</div>
+				))}
 			</div>
-
-			<div className='col-10 offset-2 col-sm-9 offset-sm-3 col-md-5 offset-md-1 col-xl-3 offset-xl-0 py-3'>
-				<Card bookData={data} />
-			</div>
-
-			<div className='col-10 offset-2 col-sm-9 offset-sm-3 col-md-5 offset-md-1 col-xl-3 offset-xl-0 py-3'>
-				<Card bookData={data} />
-			</div>
-
-			<div className='col-10 offset-2 col-sm-9 offset-sm-3 col-md-5 offset-md-1 col-xl-3 offset-xl-0 py-3'>
-				<Card bookData={data} />
-			</div>
-        </div>
 		</>
 	);
 };

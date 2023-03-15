@@ -1,6 +1,7 @@
 import React from 'react';
 import bookmark from '../../../assets/images/bookmark.png';
 import { Link } from 'react-router-dom';
+import avatar from '../../../assets/images/avatar.svg';
 
 export const Card = ({ bookData }) => {
 	const { name, transactionType, price, images, userOwner } = bookData;
@@ -52,8 +53,9 @@ export const Card = ({ bookData }) => {
 						<section className='mt-4'>
 							<Link to='/user-profile'>
 								<img
-									src={userOwner.avatar}
+									src={avatar}
 									alt='Avatar'
+									title={userOwner}
 									className='avatar'
 									width='10'
 								/>

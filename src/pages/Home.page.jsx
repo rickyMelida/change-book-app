@@ -4,6 +4,7 @@ import { Header } from '../presentation/components/common/header/Header';
 
 
 export const HomePage = ({auth}) => {
+	
 	return (
 		<>
 			<Header auth={auth}/>

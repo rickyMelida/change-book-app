@@ -35,14 +35,15 @@ export const Main = () => {
 				</div>
 
 				<div className='row'>
-					{feature.length > 0 ? (
-						<Outstanding featureData={feature} />
+					{feature.length > 0 && recent.length > 0 && others.length > 0 ? (
+						<>
+							<Outstanding featureData={feature} />
+							<Recent recentData={recent} />
+							<Others otherData={others} />
+						</>
 					) : (
 						<Loading />
 					)}
-
-					{/* <Recent data={recent} />
-					<Others data={others} /> */}
 				</div>
 
 				<div className='row'>
