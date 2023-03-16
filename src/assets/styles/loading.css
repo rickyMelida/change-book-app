@@ -14,3 +14,7 @@
 #loader-wrapper .loader-section.section-right {
     right: 0;
 }
+
+.swal2-container.swal2-center>.swal2-popup {
+    background: none !important;
+}

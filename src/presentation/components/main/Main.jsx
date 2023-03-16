@@ -6,6 +6,7 @@ import { Outstanding } from '../../sections/Outstanding';
 import { Recent } from '../../sections/Recent';
 import { getBooks } from '../../../services/books.service';
 import { Loading } from '../common/Loading';
+import Swal from 'sweetalert2';
 
 export const Main = () => {
 	const [feature, setFeature] = useState([]);
@@ -15,7 +16,6 @@ export const Main = () => {
 	useEffect(() => {
 		const loadData = async () => {
 			const response = await getBooks(3);
-
 			const [featureData, recentData, othersData] = response;
 			setFeature(featureData);
 			setRecent(recentData);
@@ -37,6 +37,7 @@ export const Main = () => {
 				<div className='row'>
 					{feature.length > 0 && recent.length > 0 && others.length > 0 ? (
 						<>
+							{Swal.close()}
 							<Outstanding featureData={feature} />
 							<Recent recentData={recent} />
 							<Others otherData={others} />

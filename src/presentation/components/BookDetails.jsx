@@ -8,11 +8,15 @@ import {
 	twitter,
 } from '../../assets/images/images';
 import { Header } from './common/header/Header';
+import { useLocation } from 'react-router-dom';
 
-export const BookDetails = ({auth}) => {
+export const BookDetails = ({ auth }) => {
+	const { bookDetails } = useLocation();
+
+	console.log(bookDetails);
 	return (
 		<>
-			<Header auth={auth}/>
+			<Header auth={auth} />
 			<div className='container'>
 				<div className='row'>
 					<div

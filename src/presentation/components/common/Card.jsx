@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import avatar from '../../../assets/images/avatar.svg';
 
 export const Card = ({ bookData }) => {
+	console.log(bookData)
 	const { name, transactionType, price, images, userOwner } = bookData;
+	
 
 	const redirectWhatsapp = () => {
 		window.open(
@@ -18,12 +20,12 @@ export const Card = ({ bookData }) => {
 		<>
 			<div>
 				<div className='card' style={{ width: '18rem' }} id='book-8'>
-					<Link to='/details'>
+					<Link to='/details' bookDetails={{ name }}>
 						<img src={images[0]} className='card-img-top' height='350' />
 					</Link>
 
 					<div className='card-body'>
-						<Link to='/details'>
+						<Link to='/details' bookDetails={{ bookData }}>
 							<h5 className='card-title mb-5' style={{ maxHeight: '24px' }}>
 								{name}
 							</h5>
