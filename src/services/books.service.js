@@ -4,7 +4,7 @@ export const getBooks = async () => {
 	return await Promise.all([getRecents(5), getFeatured(5), getothers(5)]);
 };
 
-const getRecents = async amount => {
+export const getRecents = async amount => {
 	const url = `${URL_API}book/getRecents/amount=${amount}`;
 
 	const response = await fetch(url);

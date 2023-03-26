@@ -6,7 +6,7 @@ export const Outstanding = ({ featureData }) => {
 	return (
 		<>
 			<div className='row bg-light my-5' id='outstanding'>
-				<TitleSection name={'Recientes'} />
+				<TitleSection name={'Destacados'} />
 
 				{featureData.map(element => (
 					<div
