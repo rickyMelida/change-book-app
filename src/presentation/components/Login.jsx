@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { book } from '../../assets/images/images';
 import { signin } from '../../services/auth.service';
+import { useLocation } from 'react-router-dom';
 
 const setCredentialInLocalStoragge = userData => {
 	localStorage.setItem('uid', JSON.stringify(userData));
@@ -10,6 +11,7 @@ const Login = ({ message }) => {
 	const emailValue = useRef();
 	const passwordValue = useRef();
 	const [alert, setAlert] = useState('');
+	const { state } = useLocation();
 
 	const getData = e => {
 		e.preventDefault();
@@ -32,6 +34,11 @@ const Login = ({ message }) => {
 		<>
 			<div className='container'>
 				<div className='row'>
+					<div className='col-4 offset-4 mt-4'>
+						<div className='alert alert-danger text-center' role='alert'>
+							{state}
+						</div>
+					</div>
 					<div className='col-md-4 offset-md-4'>
 						<div className='row m-3'>
 							<div className='col-md-12'>
@@ -103,6 +110,30 @@ const Login = ({ message }) => {
 				</div>
 			</div>
 		</>
+	);
+};
+
+const toast = () => {
+	return (
+		<div
+			className='toast'
+			role='alert'
+			aria-live='assertive'
+			aria-atomic='true'
+		>
+			<div className='toast-header'>
+				<img src='...' className='rounded me-2' alt='...' />
+				<strong className='me-auto'>Bootstrap</strong>
+				<small>11 mins ago</small>
+				<button
+					type='button'
+					className='btn-close'
+					data-bs-dismiss='toast'
+					aria-label='Close'
+				></button>
+			</div>
+			<div className='toast-body'>Hello, world! This is a toast message.</div>
+		</div>
 	);
 };
 

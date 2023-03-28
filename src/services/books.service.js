@@ -1,4 +1,4 @@
-const URL_API = 'http://localhost:3300/api/';
+const URL_API = 'https://book-change-api-firebase.onrender.com/api/';
 
 export const getBooks = async () => {
 	return await Promise.all([getRecents(5), getFeatured(5), getothers(5)]);
