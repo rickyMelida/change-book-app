@@ -52,12 +52,12 @@ export const Card = ({ bookData }) => {
 
 							<p className='card-text'>
 								<div className='pb-2'>
-									<strong>Estado: </strong>
+									<strong>Para: </strong>
 									{transactionType}
 								</div>
 								<div className='py-2'>
-									<strong>Para: </strong>
-									{price}
+									<strong>Precio: </strong>
+									{price} Gs.
 								</div>
 								<strong className='text-success d-block'></strong>
 							</p>

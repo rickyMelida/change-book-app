@@ -14,9 +14,10 @@ export const Header = ({ auth }) => {
 			<header id='home'>
 				<nav className='navbar navbar-expand-lg bg-light'>
 					<div className='container-fluid'>
-						<a className='navbar-brand' title='Inicio' href='/'>
+						<a className='navbar-brand d-sticky' title='Inicio' href='/'>
 							<img src={book} alt='Book Change' width='50' />
 							<Link to='/'></Link>
+							<h2 className='d-inline' id='p-title'>Libros Libres Py</h2>
 						</a>
 						<button
 							className='navbar-toggler'

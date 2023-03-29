@@ -64,7 +64,6 @@ export const BookDetails = ({ auth }) => {
 								))}
 							</div>
 						</div>
-						``
 						<div className='row my-5'>
 							<div className='col-12 col-md-11 offset-md-1 col-xl-12 offset-xl-0 mb-3'>
 								<h2 className='book-title'>{data.name}</h2>

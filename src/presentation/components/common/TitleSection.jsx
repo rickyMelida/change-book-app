@@ -9,13 +9,13 @@ export const TitleSection = ({name}) => {
 						<h5 id='recientes'>{name}</h5>
 					</div>
 					<div className='row'>
-						<div className='col-4 offset-2 col-md-2 offset-md-6'>
+						{/* <div className='col-4 offset-2 col-md-2 offset-md-6'>
 							<span className='text-right view-all'>
 								<a href='./views/unauthorized.html' className='text-dark h6'>
 									ver todos &gt;
 								</a>
 							</span>
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</div>

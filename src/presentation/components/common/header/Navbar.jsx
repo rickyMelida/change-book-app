@@ -30,7 +30,10 @@ export const Navbar = ({ auth }) => {
 					>
 						Libros
 					</a>
-					<ul className='dropdown-menu' aria-labelledby='navbarDropdown'>
+					<ul
+						className='dropdown-menu bg-light'
+						aria-labelledby='navbarDropdown'
+					>
 						<Scrollspy>
 							<li>
 								<a
@@ -68,6 +71,17 @@ export const Navbar = ({ auth }) => {
 					</a>
 				</li>
 
+				<li className='nav-item' id='session-item'>
+					<a className='nav-link' id='contacts-item' href='/contacts'>
+						<Link
+							to='/contacts'
+							style={{ color: 'gray', textDecoration: 'none' }}
+						>
+							{auth === 'N' ? 'Iniciar Sesión' : 'Cerrar Sesión'}
+						</Link>
+					</a>
+				</li>
+
 				{auth === 'Y' ? (
 					<li className='nav-item'>
 						<a
@@ -87,44 +101,55 @@ export const Navbar = ({ auth }) => {
 					''
 				)}
 
-				<li className='nav-item dropdown users-details' id='users-details'>
-					<a
-						className='nav-link dropdown-toggle'
-						href='#'
-						id='navbarDropdown'
-						role='button'
-						data-bs-toggle='dropdown'
-						aria-expanded='false'
-					>
-						Perfil
-					</a>
-					<ul className='dropdown-menu' aria-labelledby='navbarDropdown'>
-						<li>
-							<a className='dropdown-item' id='my-profile-item'>
-								Mi Perfil
-							</a>
-						</li>
-						<li>
-							<a
-								className='dropdown-item'
-								id='favourite-item'
-								href='/favorites'
-							>
-								Favoritos
-							</a>
-						</li>
-						<li>
-							<a className='dropdown-item' id='messages-item' href='/messages'>
-								Mensajes
-							</a>
-						</li>
-						<li>
-							<a className='dropdown-item' id='others-item' href='/logout'>
-								Cerrar Sesion
-							</a>
-						</li>
-					</ul>
-				</li>
+				{auth === 'Y' ? (
+					<li className='nav-item dropdown users-details' id='users-details'>
+						<a
+							className='nav-link dropdown-toggle'
+							href='#'
+							id='navbarDropdown'
+							role='button'
+							data-bs-toggle='dropdown'
+							aria-expanded='false'
+						>
+							Perfil
+						</a>
+						<ul
+							className='dropdown-menu bg-light'
+							aria-labelledby='navbarDropdown'
+						>
+							<li>
+								<a className='dropdown-item' id='my-profile-item'>
+									Mi Perfil
+								</a>
+							</li>
+							<li>
+								<a
+									className='dropdown-item'
+									id='favourite-item'
+									href='/favorites'
+								>
+									Favoritos
+								</a>
+							</li>
+							<li>
+								<a
+									className='dropdown-item'
+									id='messages-item'
+									href='/messages'
+								>
+									Mensajes
+								</a>
+							</li>
+							<li>
+								<a className='dropdown-item' id='others-item' href='/logout'>
+									Cerrar Sesion
+								</a>
+							</li>
+						</ul>
+					</li>
+				) : (
+					''
+				)}
 			</ul>
 		</>
 	);

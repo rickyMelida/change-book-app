@@ -1,3 +1,7 @@
+#p-title {
+  font-family:'Georgia';
+  margin-left: 15px;
+}
 .navbar-nav .dropdown-menu{
   border: none;
   background: #f3f2f2;
@@ -43,9 +47,31 @@ background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
   display: none !important;
 }
 
+ul li {
+  list-style: none;
+}
+
+#session-icon {
+  display: initial;
+}
+
+#session-item {
+  display: none;
+}
+
+
+
 @media (max-width: 990px) {
   .icon-users {
     display: none;
+  }
+
+  #session-icon {
+    display: none;
+  }
+
+  #session-item {
+    display: initial;
   }
 
   .users-details {
