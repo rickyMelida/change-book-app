@@ -14,6 +14,19 @@ export const signin = async data => {
 	return await response.json();
 };
 
+export const signout = async () => {
+	const url = `${URL_API}auth/signout`;
+
+	const response = await fetch(url, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+
+	return await response.json();
+};
+
 export const verifyAuth = async () => {
 	const url = `${URL_API}auth/`;
 

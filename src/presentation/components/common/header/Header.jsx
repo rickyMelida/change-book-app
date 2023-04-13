@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar } from './Navbar';
 import { InputSearch } from './InputSearch';
@@ -6,9 +6,20 @@ import { UserSection } from './UserSection';
 import book from '../../../../assets/images/book.png';
 import { getUserData } from '../../../../services/user.service';
 import { LoginIcon } from './LoginIcon';
+import { verifyAuth } from '../../../../services/auth.service';
 
-export const Header = ({ auth }) => {
+export const Header = () => {
 	const userData = getUserData();
+	const [auth, setAuth] = useState('');
+	useEffect(() => {
+		verifyAuth()
+			.then(a => {
+				setAuth(a.status === '401' ? 'N' : 'Y');
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}, []);
 	return (
 		<>
 			<header id='home'>
@@ -17,7 +28,9 @@ export const Header = ({ auth }) => {
 						<a className='navbar-brand d-sticky' title='Inicio' href='/'>
 							<img src={book} alt='Book Change' width='50' />
 							<Link to='/'></Link>
-							<h2 className='d-inline' id='p-title'>Libros Libres Py</h2>
+							<h2 className='d-inline' id='p-title'>
+								Libros Libres Py
+							</h2>
 						</a>
 						<button
 							className='navbar-toggler'
@@ -36,7 +49,7 @@ export const Header = ({ auth }) => {
 						>
 							<Navbar auth={auth} />
 							<InputSearch />
-							{auth === 'Y' ? (
+							{ auth === 'Y' ? (
 								<UserSection userData={userData} />
 							) : (
 								<LoginIcon />

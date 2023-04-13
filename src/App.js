@@ -24,6 +24,7 @@ const UserAuthenticated = () => {
 					<Route path='/email' element={<EmailVerify />} />
 					<Route path='/details' element={<BookDetails />} />
 					<Route path='/user-profile' element={<Profile />} />
+					<Route path='/login' element={<Login />} />
 					<Route path='*' element={<HomePage />} />
 				</Routes>
 			</Router>
@@ -35,7 +36,7 @@ const UserUnauthenticated = auth => {
 	return (
 		<Router>
 			<Routes>
-				<Route index path='/' element={<HomePage auth={auth} />} />
+				<Route index path='/' element={<HomePage />} />
 				<Route path='/login' element={<Login />} />
 				<Route path='/contacts' element={<ContactPage />} />
 				<Route path='/my-books' element={<Login />} />
