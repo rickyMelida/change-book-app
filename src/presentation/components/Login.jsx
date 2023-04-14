@@ -7,7 +7,7 @@ const setCredentialInLocalStoragge = userData => {
 	localStorage.setItem('uid', JSON.stringify(userData));
 };
 
-const Login = () => {
+export const Login = () => {
 	const emailValue = useRef();
 	const passwordValue = useRef();
 	const [alert, setAlert] = useState('');
@@ -111,5 +111,3 @@ const Login = () => {
 		</>
 	);
 };
-
-export default Login;
