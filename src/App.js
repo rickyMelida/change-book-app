@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { HomePage } from './pages/Home.page';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -10,6 +10,7 @@ import { Login } from './presentation/components/Login';
 import { EmailVerify } from './presentation/components/EmailVerify';
 import { BookDetails } from './presentation/components/BookDetails';
 import { Profile } from './pages/Profile.page';
+import { verifyAuth } from './services/auth.service';
 
 const UserAuthenticated = () => {
 	return (
@@ -32,7 +33,7 @@ const UserAuthenticated = () => {
 	);
 };
 
-const UserUnauthenticated = auth => {
+const UserUnauthenticated = () => {
 	return (
 		<Router>
 			<Routes>
@@ -44,17 +45,32 @@ const UserUnauthenticated = auth => {
 				<Route path='/messages' element={<Login />} />
 				<Route path='/email' element={<Login />} />
 				<Route path='/user-profile' element={<Login />} />
-				<Route path='/details' element={<BookDetails auth={auth} />} />
-				<Route path='*' element={<HomePage auth={auth} />} />
+				<Route path='/details' element={<BookDetails />} />
+				<Route path='*' element={<HomePage />} />
 			</Routes>
 		</Router>
 	);
 };
 
-export function App({ auth }) {
-	if (auth === 'Y') {
-		return UserAuthenticated();
+export function App() {
+	const [auth, setAuth] = useState('N');
+	const uid = localStorage.getItem('uid');
+
+	useEffect(() => {
+		const fecthAuth = async () => {
+			const result = await verifyAuth(uid);
+			if (result.message) setAuth('N');
+			else setAuth(result);
+		};
+
+		fecthAuth();
+	}, []);
+
+	if (auth === 'N') {
+		console.log('No se autentico');
+		return UserUnauthenticated();
 	} else {
-		return UserUnauthenticated(auth);
+		console.log('SII se autentico');
+		return UserAuthenticated();
 	}
 }

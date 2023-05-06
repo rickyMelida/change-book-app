@@ -1,7 +1,7 @@
 const URL_API = 'https://book-change-api-firebase.onrender.com/api/';
 
 export const signin = async data => {
-	const url = `${URL_API}/auth/signin`;
+	const url = `${URL_API}auth/signin`;
 
 	const response = await fetch(url, {
 		method: 'POST',
@@ -27,8 +27,8 @@ export const signout = async () => {
 	return await response.json();
 };
 
-export const verifyAuth = async () => {
-	const url = `${URL_API}auth/`;
+export const verifyAuth = async (uid) => {
+	const url = `${URL_API}auth/${uid}`;
 
 	const response = await fetch(url, {
 		method: 'GET',

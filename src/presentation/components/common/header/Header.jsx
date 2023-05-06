@@ -4,22 +4,24 @@ import { Navbar } from './Navbar';
 import { InputSearch } from './InputSearch';
 import { UserSection } from './UserSection';
 import book from '../../../../assets/images/book.png';
-import { getUserData } from '../../../../services/user.service';
 import { LoginIcon } from './LoginIcon';
 import { verifyAuth } from '../../../../services/auth.service';
 
 export const Header = () => {
-	const userData = getUserData();
+	const uid = localStorage.getItem('uid');
+	const [userData, setUserData] = useState({});
 	const [auth, setAuth] = useState('');
+
 	useEffect(() => {
-		verifyAuth()
-			.then(a => {
-				setAuth(a.status === '401' ? 'N' : 'Y');
-			})
-			.catch(err => {
-				console.log(err);
-			});
+		const fecthAuth = async () => {
+			const result = await verifyAuth(uid);
+			if (result.message) setAuth('N');
+			else setUserData(result);
+		};
+
+		fecthAuth();
 	}, []);
+
 	return (
 		<>
 			<header id='home'>
@@ -49,10 +51,10 @@ export const Header = () => {
 						>
 							<Navbar auth={auth} />
 							<InputSearch />
-							{ auth === 'Y' ? (
-								<UserSection userData={userData} />
-							) : (
+							{auth === 'N' ? (
 								<LoginIcon />
+							) : (
+								<UserSection userData={userData} />
 							)}
 						</div>
 					</div>

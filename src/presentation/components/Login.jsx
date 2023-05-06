@@ -1,10 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { book } from '../../assets/images/images';
 import { signin } from '../../services/auth.service';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const setCredentialInLocalStoragge = userData => {
-	localStorage.setItem('uid', JSON.stringify(userData));
+	const { uid } = userData;
+	localStorage.setItem('uid', uid);
 };
 
 export const Login = () => {
@@ -21,12 +22,12 @@ export const Login = () => {
 		];
 
 		signin({ email, password }).then(data => {
+			console.log(data);
 			if (data.error) {
 				setAlert(data.message);
 			} else {
 				setCredentialInLocalStoragge(data);
 				navigate('/');
-				// window.location.reload(true);
 			}
 		});
 	};

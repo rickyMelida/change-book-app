@@ -5,7 +5,7 @@ export const getBooks = async () => {
 };
 
 export const getRecents = async amount => {
-	const url = `${URL_API}book/getRecents/amount=${amount}`;
+	const url = `${URL_API}book/getRecents/${amount}`;
 
 	const response = await fetch(url);
 
@@ -13,7 +13,7 @@ export const getRecents = async amount => {
 };
 
 export const getFeatured = async amount => {
-	const url = `${URL_API}book/getFeaturedBooks/amount=${amount}`;
+	const url = `${URL_API}book/getFeaturedBooks/${amount}`;
 
 	const response = await fetch(url);
 
@@ -21,7 +21,7 @@ export const getFeatured = async amount => {
 };
 
 const getothers = async amount => {
-	const url = `${URL_API}book/getothersBooks/amount=${amount}`;
+	const url = `${URL_API}book/getothersBooks/${amount}`;
 
 	const response = await fetch(url);
 
@@ -29,7 +29,7 @@ const getothers = async amount => {
 };
 
 export const getBookByUid = async uid => {
-	const url = `${URL_API}book/uid=${uid}`;
+	const url = `${URL_API}book/${uid}`;
 
 	const response = await fetch(url);
 

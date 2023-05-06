@@ -12,7 +12,8 @@ import { getBookByUid } from '../../services/books.service';
 import { Loading } from './common/Loading';
 import Swal from 'sweetalert2';
 
-export const BookDetails = ({ auth }) => {
+export const BookDetails = () => {
+	const auth = 'N';
 	const id = useLocation();
 	const [data, setData] = useState({});
 
@@ -26,7 +27,7 @@ export const BookDetails = ({ auth }) => {
 	}, []);
 
 	const isEmpty = Object.entries(data).length === 0;
-	
+
 	return (
 		<>
 			<Header auth={auth} />

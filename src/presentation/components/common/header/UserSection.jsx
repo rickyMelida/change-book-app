@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import {
 	wishList,
 	message,
@@ -9,6 +8,9 @@ import {
 } from '../../../../assets/images/images';
 
 export const UserSection = ({ userData }) => {
+	const SignOff = () => {
+		localStorage.removeItem('uid');
+	};
 	return (
 		<>
 			<div className='icon-users'>
@@ -43,8 +45,13 @@ export const UserSection = ({ userData }) => {
 					</div>
 				</span>
 
-				<span className='mx-3 icon'>
-					<a href='/messages' id='messages-item' title='Cerrar Sesion'>
+				<span
+					className='mx-3 icon'
+					onClick={() => {
+						SignOff();
+					}}
+				>
+					<a href='' id='messages-item' title='Cerrar Sesion'>
 						<img src={logout} width='30' alt='Cerrar Sesion' />
 					</a>
 				</span>
