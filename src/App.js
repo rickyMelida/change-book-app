@@ -38,14 +38,10 @@ const UserUnauthenticated = () => {
 		<Router>
 			<Routes>
 				<Route index path='/' element={<HomePage />} />
-				<Route path='/login' element={<Login />} />
 				<Route path='/contacts' element={<ContactPage />} />
-				<Route path='/my-books' element={<Login />} />
-				<Route path='/my-favorites' element={<Login />} />
-				<Route path='/messages' element={<Login />} />
 				<Route path='/email' element={<Login />} />
-				<Route path='/user-profile' element={<Login />} />
 				<Route path='/details' element={<BookDetails />} />
+				<Route path='/login' element={<Login />} />
 				<Route path='*' element={<HomePage />} />
 			</Routes>
 		</Router>
