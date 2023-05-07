@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { book } from '../../assets/images/images';
 import { signin } from '../../services/auth.service';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const setCredentialInLocalStoragge = userData => {
 	const { uid } = userData;
@@ -91,7 +91,12 @@ export const Login = () => {
 									className='form-text text-muted d-flex justify-content-center'
 								>
 									¿Eres nuevo por aqui? &nbsp; <br />
-									<a href='./logout.html'>Cree su cuenta en Change Books</a>
+									<Link
+										to='/logout'
+										style={{ color: 'gray', textDecoration: 'none' }}
+									>
+										<a href=''>Cree su cuenta en Change Books</a>
+									</Link>
 								</small>
 							</div>
 						</form>

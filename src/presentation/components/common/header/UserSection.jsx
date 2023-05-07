@@ -40,7 +40,7 @@ export const UserSection = ({ userData }) => {
 					<div className='dropdown' style={{ float: 'left' }}>
 						<Link to='/user-profile'>
 							<a
-								href='/#'
+								href=''
 								className='dropbtn '
 								id='my-profile-item'
 								title={userData.displayName}
