@@ -15,15 +15,25 @@ export const UserSection = ({ userData }) => {
 		<>
 			<div className='icon-users'>
 				<span className='mx-3 icon'>
-					<a href='/my-favorites' id='favorites-item' title='Favoritos'>
-						<img src={wishList} width='30' alt='' />
-					</a>
+					<Link
+						to='/my-favorites'
+						style={{ color: 'gray', textDecoration: 'none' }}
+					>
+						<a href='' id='favorites-item' title='Favoritos'>
+							<img src={wishList} width='30' alt='' />
+						</a>
+					</Link>
 				</span>
 
 				<span className='mx-3 icon'>
-					<a href='/messages' id='messages-item' title='Mensajes'>
-						<img src={message} width='30' alt='message' />
-					</a>
+					<Link
+						to='/messages'
+						style={{ color: 'gray', textDecoration: 'none' }}
+					>
+						<a href='' id='messages-item' title='Mensajes'>
+							<img src={message} width='30' alt='message' />
+						</a>
+					</Link>
 				</span>
 
 				<span className='mx-1 dropdown'>

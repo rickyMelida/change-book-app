@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { HomePage } from './pages/Home.page';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes, HashRouter } from 'react-router-dom';
 import { ContactPage } from './pages/Contacts.page';
 import { MyBookPage } from './pages/MyBooks.page';
 import { FavoritesPage } from './pages/Favorites.page';
@@ -11,11 +11,10 @@ import { EmailVerify } from './presentation/components/EmailVerify';
 import { BookDetails } from './presentation/components/BookDetails';
 import { Profile } from './pages/Profile.page';
 import { verifyAuth } from './services/auth.service';
-
 const UserAuthenticated = () => {
 	return (
 		<>
-			<Router>
+			<HashRouter>
 				<Routes>
 					<Route index path='/' element={<HomePage />} />
 					<Route path='/contacts' element={<ContactPage />} />
@@ -28,23 +27,22 @@ const UserAuthenticated = () => {
 					<Route path='/login' element={<Login />} />
 					<Route path='*' element={<HomePage />} />
 				</Routes>
-			</Router>
+			</HashRouter>
 		</>
 	);
 };
 
 const UserUnauthenticated = () => {
 	return (
-		<Router>
+		<HashRouter>
 			<Routes>
 				<Route index path='/' element={<HomePage />} />
 				<Route path='/contacts' element={<ContactPage />} />
-				<Route path='/email' element={<Login />} />
 				<Route path='/details' element={<BookDetails />} />
 				<Route path='/login' element={<Login />} />
 				<Route path='*' element={<HomePage />} />
 			</Routes>
-		</Router>
+		</HashRouter>
 	);
 };
 
