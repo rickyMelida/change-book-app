@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { avatar } from '../../../assets/images/images';
+import { getUserInfo } from '../../../services/user.service';
 
-export const UserProfile = () => {
+export const UserProfile = ({ userUid }) => {
+	const [userInfo, setUserInfo] = useState({});
+
+	useEffect(() => {
+		const fecthUserInfo = async () => {
+			const { displayName, photoURL } = await getUserInfo(userUid);
+			setUserInfo({ displayName, photoURL });
+		};
+
+		fecthUserInfo();
+	}, []);
+
 	return (
 		<>
 			<div className='container'>
@@ -9,14 +21,18 @@ export const UserProfile = () => {
 					<div className='row my-5'>
 						<div className='col-md-6 offset-3'>
 							<div className='avatar'>
-								<img src={avatar} alt='Avatar' width='80' />
+								<img
+									src={userInfo.photoURL ? userInfo.photoURL : avatar}
+									alt='Avatar'
+									width='80'
+									style={{borderRadius: '50%'}}
+								/>
 							</div>
 						</div>
 					</div>
 					<div className='row'>
 						<div className='col-md-6 offset-md-3 text-center'>
-							<h3>Ricardo Mélida</h3>
-							<h6>Asunción - Paraguay</h6>
+							<h3>{userInfo.displayName}</h3>
 						</div>
 					</div>
 					<div className='row'>
@@ -31,7 +47,18 @@ export const UserProfile = () => {
 						<div className='row justify-content-md-center'>
 							<div className='col-3 offset-4 pb-3 mx-auto'>
 								<h2>
-									Libros de <strong>Ricardo</strong>
+									{userInfo.displayName ? (
+										<span>
+											{' '}
+											Libros de
+											<strong> {userInfo.displayName.split(' ')[0]}</strong>
+										</span>
+									) : (
+										<span>
+											{' '}
+											Libros del <strong>Usuario</strong>
+										</span>
+									)}
 								</h2>
 							</div>
 						</div>

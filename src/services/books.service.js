@@ -35,3 +35,11 @@ export const getBookByUid = async uid => {
 
 	return await response.json();
 };
+
+export const getUserBooks = async uid =>{
+	const url = `${URL_API}book/byUser/${uid}`;
+
+	const response = await fetch(url);
+
+	return await response.json();
+}

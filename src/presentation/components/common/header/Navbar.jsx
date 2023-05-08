@@ -18,7 +18,7 @@ export const Navbar = ({ auth }) => {
 						className='nav-link active c-pointer'
 						aria-current='page'
 						id='home-item'
-						href='/'
+						href=''
 					>
 						<Link to='/' style={{ color: 'gray', textDecoration: 'none' }}>
 							Home
@@ -29,7 +29,7 @@ export const Navbar = ({ auth }) => {
 				<li className='nav-item dropdown'>
 					<a
 						className='nav-link dropdown-toggle'
-						href='#'
+						href=''
 						id='navbarDropdown'
 						role='button'
 						data-bs-toggle='dropdown'
@@ -78,11 +78,11 @@ export const Navbar = ({ auth }) => {
 					</a>
 				</li>
 
-				{auth === 'Y' ? (
+				{auth !== 'N' ? (
 					<li className='nav-item dropdown users-details' id='users-details'>
 						<a
 							className='nav-link dropdown-toggle'
-							href='#'
+							href=''
 							id='navbarDropdown'
 							role='button'
 							data-bs-toggle='dropdown'
@@ -95,27 +95,34 @@ export const Navbar = ({ auth }) => {
 							aria-labelledby='navbarDropdown'
 						>
 							<li>
-								<a className='dropdown-item' id='my-profile-item'>
-									Mi Perfil
-								</a>
+								<Link
+									to='/user-profile'
+									style={{ color: 'gray', textDecoration: 'none' }}
+								>
+									<a className='dropdown-item' id='my-profile-item'>
+										Mi Perfil
+									</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									className='dropdown-item'
-									id='favourite-item'
-									href='/favorites'
+								<Link
+									to='/my-favorites'
+									style={{ color: 'gray', textDecoration: 'none' }}
 								>
-									Favoritos
-								</a>
+									<a className='dropdown-item' id='favourite-item' href=''>
+										Favoritos
+									</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									className='dropdown-item'
-									id='messages-item'
-									href='/messages'
+								<Link
+									to='/messages'
+									style={{ color: 'gray', textDecoration: 'none' }}
 								>
-									Mensajes
-								</a>
+									<a className='dropdown-item' id='messages-item' href=''>
+										Mensajes
+									</a>
+								</Link>
 							</li>
 						</ul>
 					</li>
