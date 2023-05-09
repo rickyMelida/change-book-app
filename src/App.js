@@ -7,7 +7,7 @@ import { UserBooksPage } from './pages/UserBooks.page';
 import { FavoritesPage } from './pages/Favorites.page';
 import { MessagesPage } from './pages/Messages.page';
 import { Login } from './presentation/components/Login';
-import { Logout } from './presentation/components/Logout';
+import { Logup } from './presentation/components/Logup';
 import { EmailVerify } from './presentation/components/EmailVerify';
 import { BookDetails } from './presentation/components/BookDetails';
 import { Profile } from './pages/Profile.page';
@@ -27,7 +27,7 @@ const UserAuthenticated = () => {
 					<Route path='/details' element={<BookDetails />} />
 					<Route path='/user-profile' element={<Profile uid={uid} />} />
 					<Route path='/login' element={<Login />} />
-					<Route path='/logout' element={<Logout />} />
+					<Route path='/logout' element={<Logup />} />
 					<Route path='*' element={<HomePage />} />
 				</Routes>
 			</HashRouter>
@@ -43,7 +43,7 @@ const UserUnauthenticated = () => {
 				<Route path='/contacts' element={<ContactPage />} />
 				<Route path='/details' element={<BookDetails />} />
 				<Route path='/login' element={<Login />} />
-				<Route path='/logout' element={<Logout />} />
+				<Route path='/logout' element={<Logup />} />
 				<Route path='/email-verify' element={<EmailVerify />} />
 				<Route path='*' element={<HomePage />} />
 			</Routes>

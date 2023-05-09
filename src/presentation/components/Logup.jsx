@@ -1,19 +1,35 @@
 import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import book from '../../assets/images/book.png';
 import { signup } from '../../services/auth.service';
 
-export const Logout = () => {
+const Spinner = () => {
+	return (
+		<>
+			<div className='spinner-border' role='status'>
+				<span className='sr-only'></span>
+			</div>
+		</>
+	);
+};
+
+const convertPhoneNumber = phoneNumber => {
+	return '+595' + phoneNumber.substr(1, phoneNumber.length);
+};
+
+export const Logup = () => {
 	const name = useRef(null);
 	const email = useRef(null);
 	const password = useRef(null);
 	const confirmPassword = useRef(null);
 	const phone = useRef(null);
 
+	const navigate = useNavigate();
 	const regexEMail = /^[\w.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 	const regexPhone = /^09\d{0,10}$/;
 
 	const [warning, setWarning] = useState(null);
+	const [btnText, setBtnText] = useState('Continuar');
 
 	const registerUser = () => {
 		if (!regexEMail.test(email.current.value))
@@ -34,12 +50,15 @@ export const Logout = () => {
 			displayName: name.current.value,
 			photoURL:
 				'https://firebasestorage.googleapis.com/v0/b/book-change-api.appspot.com/o/users%2Favatar.svg?alt=media&token=cc0b9118-cc36-41ed-b53c-e84728ae68cc',
-			phoneNumber: phone.current.value,
+			phoneNumber: convertPhoneNumber(phone.current.value),
 		};
+
+		setBtnText(<Spinner />);
 
 		signup(userInfo)
 			.then(response => {
-				console.log(response);
+				const { email } = response;
+				if (!response.err) navigate('/email-verify', { state: email });
 			})
 			.catch(err => {
 				console.log(err);
@@ -117,13 +136,13 @@ export const Logout = () => {
 								/>
 							</div>
 							<div className='form-group py-2 pb-3'>
-								<label htmlFor='password' className='font-weight-bold'>
+								<label htmlFor='confirm-password' className='font-weight-bold'>
 									Confirmar Contraseña
 								</label>
 								<input
 									type='password'
 									className='form-control'
-									id='password'
+									id='confirm-password'
 									ref={confirmPassword}
 								/>
 							</div>
@@ -132,7 +151,7 @@ export const Logout = () => {
 								className='btn btn-dark text-ligth btn-lg btn-block '
 								onClick={() => registerUser()}
 							>
-								Continuar
+								{btnText}
 							</button>
 
 							<div

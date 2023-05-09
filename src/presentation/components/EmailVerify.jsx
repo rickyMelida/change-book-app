@@ -1,8 +1,10 @@
 import React from 'react';
 import { book } from '../../assets/images/images';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-export const EmailVerify = ({email}) => {
+export const EmailVerify = ({ email }) => {
+	const location = useLocation();
+	
 	return (
 		<>
 			<div className='container'>
@@ -21,11 +23,11 @@ export const EmailVerify = ({email}) => {
 						<p className='text-center px-5'>
 							Hemos enviado un mesaje de correo electronico a{' '}
 							<span className='text-secondary bold'>
-								<em>ricardomelid92@gmail.com</em>
+								<em>{location.state}</em>
 							</span>{' '}
 							para asegurarnos de que eres el propietario. Comprueba tu bandeja
 							de entrada y sigue las instrucciones la finalizar la configuracion
-							de tu cuenta en Book Change.
+							de tu cuenta en Libros Libres.
 						</p>
 					</div>
 				</div>
