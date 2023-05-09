@@ -1,7 +1,8 @@
 import React from 'react';
 import { book } from '../../assets/images/images';
+import { Link } from 'react-router-dom';
 
-export const EmailVerify = () => {
+export const EmailVerify = ({email}) => {
 	return (
 		<>
 			<div className='container'>
@@ -39,10 +40,11 @@ export const EmailVerify = () => {
 							className='text-center px-5 py-2 rounded-3 '
 							style={{ background: 'rgba(0,0,0,0.2)' }}
 						>
-							© 2020 Copyright:
-							<a className='text-white px-2' href='https://mdbootstrap.com/'>
-								MDBootstrap.com
-							</a>
+							<Link to='/'>
+								<a className='text-primary px-2' href=''>
+									Volver a la Página Principal
+								</a>
+							</Link>
 						</div>
 					</div>
 				</div>

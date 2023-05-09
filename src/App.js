@@ -44,6 +44,7 @@ const UserUnauthenticated = () => {
 				<Route path='/details' element={<BookDetails />} />
 				<Route path='/login' element={<Login />} />
 				<Route path='/logout' element={<Logout />} />
+				<Route path='/email-verify' element={<EmailVerify />} />
 				<Route path='*' element={<HomePage />} />
 			</Routes>
 		</HashRouter>

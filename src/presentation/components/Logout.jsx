@@ -1,8 +1,50 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import book from '../../assets/images/book.png';
+import { signup } from '../../services/auth.service';
 
 export const Logout = () => {
+	const name = useRef(null);
+	const email = useRef(null);
+	const password = useRef(null);
+	const confirmPassword = useRef(null);
+	const phone = useRef(null);
+
+	const regexEMail = /^[\w.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+	const regexPhone = /^09\d{0,10}$/;
+
+	const [warning, setWarning] = useState(null);
+
+	const registerUser = () => {
+		if (!regexEMail.test(email.current.value))
+			return setWarning('NO es un correo valido');
+
+		if (
+			!regexPhone.test(phone.current.value) ||
+			phone.current.value.length < 10
+		)
+			return setWarning('Numero de telefono no valido');
+
+		if (password.current.value !== confirmPassword.current.value)
+			return setWarning('Las contraseñas no coinciden');
+
+		const userInfo = {
+			email: email.current.value,
+			password: password.current.value,
+			displayName: name.current.value,
+			photoURL:
+				'https://firebasestorage.googleapis.com/v0/b/book-change-api.appspot.com/o/users%2Favatar.svg?alt=media&token=cc0b9118-cc36-41ed-b53c-e84728ae68cc',
+			phoneNumber: phone.current.value,
+		};
+
+		signup(userInfo)
+			.then(response => {
+				console.log(response);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};
 	return (
 		<>
 			<div className='container'>
@@ -30,6 +72,8 @@ export const Logout = () => {
 									id='name'
 									aria-describedby='emailHelp'
 									autoComplete='disabled'
+									ref={name}
+									placeholder='Juan Perez'
 								/>
 							</div>
 							<div className='form-group py-2'>
@@ -42,26 +86,62 @@ export const Logout = () => {
 									id='email'
 									aria-describedby='emailHelp'
 									autoComplete='disabled'
+									ref={email}
+									placeholder='juanperez123@gmail.com'
+								/>
+							</div>
+							<div className='form-group py-2'>
+								<label htmlFor='phone' className='font-weight-bold'>
+									Número de telefono
+								</label>
+								<input
+									type='tel'
+									className='form-control'
+									id='phone'
+									aria-describedby='emailHelp'
+									autoComplete='disabled'
+									ref={phone}
+									placeholder='0981123456'
+									maxLength='10'
 								/>
 							</div>
 							<div className='form-group py-2'>
 								<label htmlFor='password' className='font-weight-bold'>
 									Contraseña
 								</label>
-								<input type='password' className='form-control' id='password' />
+								<input
+									type='password'
+									className='form-control'
+									id='password'
+									ref={password}
+								/>
 							</div>
 							<div className='form-group py-2 pb-3'>
 								<label htmlFor='password' className='font-weight-bold'>
 									Confirmar Contraseña
 								</label>
-								<input type='password' className='form-control' id='password' />
+								<input
+									type='password'
+									className='form-control'
+									id='password'
+									ref={confirmPassword}
+								/>
 							</div>
 							<button
 								type='button'
 								className='btn btn-dark text-ligth btn-lg btn-block '
+								onClick={() => registerUser()}
 							>
 								Continuar
 							</button>
+
+							<div
+								className='alert alert-danger mt-4 text-center'
+								style={!warning ? { display: 'none' } : {}}
+								role='alert'
+							>
+								{warning}
+							</div>
 
 							<div className='mt-4'>
 								<small id='emailHelp' className='form-text text-muted'>
