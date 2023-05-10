@@ -22,13 +22,14 @@ export const Login = () => {
 		];
 
 		signin({ email, password }).then(data => {
-			console.log(data);
-			if (data.error) {
-				setAlert(data.message);
-			} else {
-				setCredentialInLocalStoragge(data);
-				navigate('/');
-			}
+			if (data.error) return setAlert(data.message);
+
+			if (!data.emailVerified)
+				return setAlert(
+					'Usuario no verificado. Favor verifique su correo electronico para activar su cuenta.'
+				);
+			setCredentialInLocalStoragge(data);
+			navigate('/');
 		});
 	};
 
