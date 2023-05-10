@@ -165,20 +165,12 @@ export const BookDetails = () => {
 							</div>
 						</div>
 						<div className='row mb-5'>
-							<div className='col-12 col-md-6 mb-3'>
+							<div className='col-12 col-md-6 mx-auto mb-3'>
 								<button
 									type='button'
 									className='btn btn-primary btn-lg btn-block'
 								>
 									Confirmar Transaccion
-								</button>
-							</div>
-							<div className='col-12 col-md-6'>
-								<button
-									type='button'
-									className='btn btn-danger btn-lg btn-block'
-								>
-									Cancelar Transaccion
 								</button>
 							</div>
 						</div>

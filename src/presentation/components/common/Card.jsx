@@ -9,20 +9,21 @@ export const Card = ({ bookData }) => {
 	const auth = localStorage.getItem('uid');
 
 	const redirectWhatsapp = () => {
-		if(auth) {
-
+		if (auth) {
 			window.open(
 				'https://api.whatsapp.com/send?phone=595971736193&text=M%C3%A1s+informaci%C3%B3n+por+favor',
 				'_blank',
 				'noreferrer'
-				);
-			}else {
-				navigate('/login', {state: 'Debe de iniciar sesión para realizar la transaccion.'})
-			}
+			);
+		} else {
+			navigate('/login', {
+				state: 'Debe de iniciar sesión para realizar la transaccion.',
+			});
+		}
 	};
 
 	const redirect = ({ uid }) => {
-		navigate('/details', {state: uid});
+		navigate('/details', { state: uid });
 	};
 
 	return (
@@ -38,7 +39,7 @@ export const Card = ({ bookData }) => {
 						<img src={images[0]} className='card-img-top' height='350' />
 					</div>
 
-					<div className='card-body'>
+					<div className='card-body' style={{ paddingBottom: '-15px' }}>
 						<div
 							className={`id-${uid}`}
 							onClick={e => {
@@ -51,7 +52,7 @@ export const Card = ({ bookData }) => {
 							<hr className='mx-2' />
 
 							<p className='card-text'>
-								<div className='pb-2'>
+								<div className='pb-1'>
 									<strong>Para: </strong>
 									{transactionType}
 								</div>
@@ -68,26 +69,27 @@ export const Card = ({ bookData }) => {
 							className='btn btn-primary btn-lg btn-block w-100 btn-contact'
 							onClick={redirectWhatsapp}
 						>
-							Contactar
+							Obtener Libro
 						</button>
 
-						<section className='mt-4'>
-							<Link to='/user-profile' state={'Debe iniciar sesión para ver el perfil de otro usuario.'}>
-								<img
-									src={avatar}
-									alt='Avatar'
-									title={userOwner}
-									className='avatar'
-									width='10'
-								/>
-								<cite
-									className='text-primary pt-2 d-block w-50 users'
-									id='user-3'
-								>
-									{userOwner.name}
-								</cite>
+						<section className='mt-3'>
+							<Link
+								to='/user-profile'
+								state={
+									'Debe iniciar sesión para ver el perfil de otro usuario.'
+								}
+							>
+								<span>
+									<img
+										src={avatar}
+										alt='Avatar'
+										title={userOwner}
+										className='avatar'
+										width='10'
+									/>
+								</span>
 							</Link>
-							<span className='text-dark float-end pt-2' id='bookmarkContainer'>
+							<span className='text-dark float-end pt-2 pr-3'>
 								<img
 									src={bookmark}
 									title='Agregar como favorito'
