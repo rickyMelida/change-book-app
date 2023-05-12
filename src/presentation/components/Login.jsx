@@ -4,8 +4,9 @@ import { signin } from '../../services/auth.service';
 import { useNavigate, Link } from 'react-router-dom';
 
 const setCredentialInLocalStoragge = userData => {
-	const { uid } = userData;
+	const { uid, displayName } = userData;
 	localStorage.setItem('uid', uid);
+	localStorage.setItem('displayName', displayName);
 };
 
 export const Login = () => {

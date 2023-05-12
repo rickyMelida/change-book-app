@@ -43,3 +43,17 @@ export const getUserBooks = async uid =>{
 
 	return await response.json();
 }
+
+export const setBook = async bookData =>{
+	const url = `${URL_API}book/set-book`;
+
+	const response = await fetch(url, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(bookData),
+	});
+
+	return await response.json();
+}
