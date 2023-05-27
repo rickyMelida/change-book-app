@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { setBook } from '../../../services/books.service';
 import Swal from 'sweetalert2';
-import storage from '../../../services/firebaseConfig';
+// import storage from '../../../services/firebaseConfig';
+import storage from '/etc/secrets/firebaseConfig';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 const today = () => {
