@@ -61,7 +61,7 @@ export const Logup = () => {
 				if (!response.err) navigate('/email-verify', { state: email });
 			})
 			.catch(err => {
-				console.log(err);
+				throw(err);
 			});
 	};
 	

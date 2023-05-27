@@ -68,7 +68,6 @@ export function App() {
 
 		fecthAuth();
 	}, []);
-	console.log(auth);
 	if (auth === 'N') {
 		return UserUnauthenticated();
 	} else {

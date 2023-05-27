@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { setBook } from '../../../services/books.service';
 import Swal from 'sweetalert2';
+import storage from '../../../services/firebaseConfig';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 const today = () => {
 	const date = new Date();
@@ -12,57 +14,101 @@ const today = () => {
 	return `${day}/${month}/${year}`.toString();
 };
 
-export const FormAddBook = () => {
-	const author = useRef();
-	const litleDescripcion = useRef();
-	const name = useRef();
-	const otherDetails = useRef('Ninguno');
-	const price = useRef();
-	const state = useRef('new');
-	const transactionType = useRef('buy');
-	const year = useRef();
+const uploadImages = async images => {
+	const imagePromises = Array.from(images, image => uploadImage(image));
 
+	const imageRes = await Promise.all(imagePromises);
+	return imageRes;
+};
+
+const uploadImage = async image => {
+	const storageRef = ref(storage, `/books/${Date.now()}-${image.name}`);
+
+	const response = await uploadBytes(storageRef, image);
+	const url = await getDownloadURL(response.ref);
+	return url;
+};
+
+const allFieldsComplete = formData => {
+	const error = {
+		otherDetails: 'Debe tener algun otro detalle para complementar',
+		state: 'Debe de marcar el estado en el cual se encuentra el libro',
+		transactionType:
+			'Debe de marcar que tipo de transaccion quiere hacer con el libro(vender, cambiar, permutar.)',
+		name: 'El libro debe de tener un nombre.',
+		author: 'El libro debe de tener un autor.',
+		litleDescripcion: 'El libro debe de tener una pequeña descripcion.',
+		price: 'El libro debe de tener un precio.',
+		year: 'El libro debe de tener un año.',
+	};
+
+	for (const element in formData) {
+		if (!formData[element]) {
+			return { status: false, message: error[element] };
+		}
+	}
+
+	return { status: true, message: 'OK' };
+};
+
+export const FormAddBook = () => {
+	const images = useRef();
 	const [alert, setAlert] = useState();
+	const [uploadedFiles, setUploadedFiles] = useState(true);
+	// const [bookInfo, setBookInfo] = useState({
+	let bookInfo = {
+		name: '',
+		author: '',
+		otherDetails: 'none',
+		price: '',
+		year: '',
+		litleDescripcion: '',
+		state: 'Nuevo',
+		transactionType: 'Venta',
+	};
+
+	const updateBookInfo = e => {
+		bookInfo = {
+			...bookInfo,
+			[e.target.name]: e.target.value,
+		};
+	};
 
 	const setData = () => {
-		if (!name.current.value)
-			return setAlert('El libro debe de tener un nombre.');
-		if (!author.current.value)
-			return setAlert('El libro debe de tener un autor.');
-		if (!litleDescripcion.current.value)
-			return setAlert('El libro debe de tener una pequeña descripcion.');
-		if (!price.current.value && transactionType.current.value !== 'change')
-			return setAlert('El libro debe de tener un precio.');
-		if (!year.current.value) return setAlert('El libro debe de tener un año.');
+		const fieldBookInfo = allFieldsComplete(bookInfo);
+		if (!fieldBookInfo.status) {
+			return setAlert(fieldBookInfo.message);
+		}
 
-		const bookData = {
-			author: author.current.value,
-			available: true,
-			images: ['https://storage.lpt.com.py/TAPAS/9789877362459.jpg'],
-			litleDescripcion: litleDescripcion.current.value,
-			name: name.current.value,
-			otherDetails: otherDetails.current.value,
-			price: price.current.value,
-			state: state.current.value,
-			transactionType: transactionType.current.value,
-			uploadDate: today(),
-			userId: localStorage.getItem('uid'),
-			userOwner: localStorage.getItem('displayName'),
-			year: year.current.value,
-		};
+		uploadImages(images.current.files)
+			.then(res => {
+				bookInfo = {
+					...bookInfo,
+					available: true,
+					uploadDate: today(),
+					userOwner: localStorage.getItem('displayName'),
+					userId: localStorage.getItem('uid'),
+					images: res,
+				};
 
-		setBook(bookData).then(res => {
-			Swal.fire('Great', 'Se agrego nuevo libro correctamente!', 'success');
+				setBook(bookInfo).then(() => {
+					Swal.fire({
+						title: 'Success',
+						text: 'Se agrego nuevo libro correctamente!',
+						icon: 'success',
+						confirmButtonText: 'OK',
+					});
+				});
+			})
+			.catch(() => {
+				setUploadedFiles(false);
+			});
 
-			author.current.value = null;
-			litleDescripcion.current.value = null;
-			name.current.value = null;
-			otherDetails.current.value = null;
-			price.current.value = null;
-			state.current.value = null;
-			transactionType.current.value = null;
-			year.current.value = null;
-		});
+		if (!uploadedFiles) {
+			return setAlert(
+				'Hubo un error al intentar cargar las imagenes. Favor vuelva a intentarlo mas tarde'
+			);
+		}
 	};
 
 	return (
@@ -85,7 +131,8 @@ export const FormAddBook = () => {
 									id='book-title'
 									aria-describedby='emailHelp'
 									placeholder='Ej. Romeo y Julieta'
-									ref={name}
+									name='name'
+									onChange={updateBookInfo}
 								/>
 							</div>
 
@@ -97,7 +144,8 @@ export const FormAddBook = () => {
 									id='book-author'
 									aria-describedby='emailHelp'
 									placeholder='Ej. William Shakespeare'
-									ref={author}
+									name='author'
+									onChange={updateBookInfo}
 								/>
 							</div>
 
@@ -109,7 +157,8 @@ export const FormAddBook = () => {
 									id='book-pages-number'
 									aria-describedby='emailHelp'
 									placeholder='Ej. Escrito en la primera pagina, no cuenta con tapa trasera, etc.'
-									ref={otherDetails}
+									name='otherDetails'
+									onChange={updateBookInfo}
 								/>
 							</div>
 							<div className='form-group my-4'>
@@ -120,7 +169,8 @@ export const FormAddBook = () => {
 									id='book-price'
 									aria-describedby='emailHelp'
 									placeholder='Ej.65000'
-									ref={price}
+									name='price'
+									onChange={updateBookInfo}
 								/>
 							</div>
 							<div className='form-group my-4'>
@@ -131,17 +181,23 @@ export const FormAddBook = () => {
 									id='year'
 									aria-describedby='emailHelp'
 									placeholder='2001'
-									ref={year}
+									name='year'
+									onChange={updateBookInfo}
 								/>
 							</div>
 							<div className='form-group mb-4'>
 								<label htmlFor='state-bok' className='text-muted'>
 									Estado del Libro:{' '}
 								</label>
-								<select className='form-control' id='state-bok' ref={state}>
-									<option value='new'>Nuevo</option>
-									<option value='used'>Usado</option>
-									<option value='almost_new'>Semi Nuevo</option>
+								<select
+									className='form-control'
+									id='state-bok'
+									name='state'
+									onChange={updateBookInfo}
+								>
+									<option value='Nuevo'>Nuevo</option>
+									<option value='Usado'>Usado</option>
+									<option value='Semi Nuevo'>Semi Nuevo</option>
 								</select>
 							</div>
 
@@ -152,11 +208,12 @@ export const FormAddBook = () => {
 								<select
 									className='form-control'
 									id='state-bok'
-									ref={transactionType}
+									name='transactionType'
+									onChange={updateBookInfo}
 								>
-									<option value='buy'>Vender</option>
-									<option value='exchange'>Permutar</option>
-									<option value='change'>Cambiar</option>
+									<option value='Vender'>Vender</option>
+									<option value='Permutar'>Permutar</option>
+									<option value='Cambiar'>Cambiar</option>
 								</select>
 							</div>
 							<div className='form-group my-4'>
@@ -167,15 +224,20 @@ export const FormAddBook = () => {
 									rows='3'
 									placeholder='Ej. El libro tiene pequeños rasguños en la parte de atrás.'
 									style={{ resize: 'none' }}
-									ref={litleDescripcion}
+									name='litleDescripcion'
+									onChange={updateBookInfo}
 								></textarea>
 							</div>
 							<div className='form-group mb-4'>
 								<div className='custom-file'>
 									<input
 										type='file'
+										multiple
 										className='custom-file-input'
 										id='customFile'
+										accept='image/*'
+										name='images'
+										ref={images}
 									/>
 									<label className='custom-file-label' htmlFor='customFile'>
 										Imagen del Libro

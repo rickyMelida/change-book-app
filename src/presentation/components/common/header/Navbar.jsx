@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Scrollspy from 'react-scrollspy';
 import { signout } from '../../../../services/auth.service';
 
 export const Navbar = ({ auth }) => {
@@ -24,47 +23,6 @@ export const Navbar = ({ auth }) => {
 							Home
 						</Link>
 					</a>
-				</li>
-
-				<li className='nav-item dropdown'>
-					<a
-						className='nav-link dropdown-toggle'
-						href=''
-						id='navbarDropdown'
-						role='button'
-						data-bs-toggle='dropdown'
-						aria-expanded='false'
-					>
-						Libros
-					</a>
-					<ul
-						className='dropdown-menu bg-light'
-						aria-labelledby='navbarDropdown'
-					>
-						<Scrollspy>
-							<li>
-								<a
-									className='dropdown-item'
-									id='highlighted-item'
-									href='#outstanding'
-								>
-									Destacados
-								</a>
-							</li>
-
-							<li>
-								<a className='dropdown-item' id='recent-item' href='#recents'>
-									Recientes
-								</a>
-							</li>
-
-							<li>
-								<a className='dropdown-item' id='others-item' href='#others'>
-									Otros
-								</a>
-							</li>
-						</Scrollspy>
-					</ul>
 				</li>
 
 				<li className='nav-item'>
@@ -95,34 +53,34 @@ export const Navbar = ({ auth }) => {
 							aria-labelledby='navbarDropdown'
 						>
 							<li>
-								<Link
-									to='/user-profile'
-									style={{ color: 'gray', textDecoration: 'none' }}
-								>
-									<a className='dropdown-item' id='my-profile-item'>
+								<a className='dropdown-item' id='my-profile-item'>
+									<Link
+										to='/user-profile'
+										style={{ color: 'black', textDecoration: 'none' }}
+									>
 										Mi Perfil
-									</a>
-								</Link>
+									</Link>
+								</a>
 							</li>
 							<li>
-								<Link
-									to='/my-favorites'
-									style={{ color: 'gray', textDecoration: 'none' }}
-								>
-									<a className='dropdown-item' id='favourite-item' href=''>
+								<a className='dropdown-item' id='favourite-item' href=''>
+									<Link
+										to='/my-favorites'
+										style={{ color: 'black', textDecoration: 'none' }}
+									>
 										Favoritos
-									</a>
-								</Link>
+									</Link>
+								</a>
 							</li>
 							<li>
-								<Link
-									to='/messages'
-									style={{ color: 'gray', textDecoration: 'none' }}
-								>
-									<a className='dropdown-item' id='messages-item' href=''>
+								<a className='dropdown-item' id='messages-item' href=''>
+									<Link
+										to='/messages'
+										style={{ color: 'black', textDecoration: 'none' }}
+									>
 										Mensajes
-									</a>
-								</Link>
+									</Link>
+								</a>
 							</li>
 						</ul>
 					</li>
