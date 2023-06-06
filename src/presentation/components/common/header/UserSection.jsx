@@ -6,10 +6,12 @@ import {
 	user,
 	logout,
 } from '../../../../assets/images/images';
+import removeCookie from '../../../../hooks/removeCookie';
 
 export const UserSection = ({ userData }) => {
 	const SignOff = () => {
-		localStorage.removeItem('uid');
+		removeCookie('uid');
+		removeCookie('displayName');
 	};
 	return (
 		<>

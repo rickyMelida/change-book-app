@@ -1,9 +1,10 @@
 import React from 'react';
 import { TitleSection } from '../components/common/TitleSection';
 import { Card } from '../components/common/Card';
+import getCookie from '../../hooks/getCookie';
 
 export const Outstanding = ({ featureData }) => {
-	const currentUserUID = localStorage.getItem('uid');
+	const currentUserUID = getCookie('uid');
 
 	return (
 		<>

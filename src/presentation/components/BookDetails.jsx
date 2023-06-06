@@ -11,9 +11,10 @@ import { useLocation } from 'react-router-dom';
 import { getBookByUid } from '../../services/books.service';
 import { Loading } from './common/Loading';
 import Swal from 'sweetalert2';
+import getCookie from '../../hooks/getCookie';
 
 export const BookDetails = () => {
-	const currentUserUID = localStorage.getItem('uid');
+	const currentUserUID = getCookie('uid');
 	const auth = 'N';
 	const id = useLocation();
 	const [data, setData] = useState({});

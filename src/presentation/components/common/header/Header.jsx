@@ -6,9 +6,10 @@ import { UserSection } from './UserSection';
 import book from '../../../../assets/images/book.png';
 import { LoginIcon } from './LoginIcon';
 import { verifyAuth } from '../../../../services/auth.service';
+import getCookie from '../../../../hooks/getCookie';
 
 export const Header = () => {
-	const uid = localStorage.getItem('uid');
+	const uid = getCookie('uid');
 	const [userData, setUserData] = useState({});
 	const [auth, setAuth] = useState('');
 

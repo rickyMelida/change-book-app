@@ -3,6 +3,7 @@ import { setBook } from '../../../services/books.service';
 import Swal from 'sweetalert2';
 import storage from '../../../services/firebaseConfig';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import getCookie from '../../../hooks/getCookie';
 
 const today = () => {
 	const date = new Date();
@@ -86,8 +87,8 @@ export const FormAddBook = () => {
 					...bookInfo,
 					available: true,
 					uploadDate: today(),
-					userOwner: localStorage.getItem('displayName'),
-					userId: localStorage.getItem('uid'),
+					userOwner: getCookie('displayName'),
+					userId: getCookie('uid'),
 					images: res,
 				};
 

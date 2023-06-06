@@ -13,8 +13,9 @@ import { BookDetails } from './presentation/components/BookDetails';
 import { Profile } from './pages/Profile.page';
 import { verifyAuth } from './services/auth.service';
 import { AddNewBookPage } from './pages/AddNewBook.page';
+import getCookie from './hooks/getCookie';
 
-const UserAuthenticated = (uid) => {
+const UserAuthenticated = uid => {
 	return (
 		<>
 			<HashRouter>
@@ -57,7 +58,7 @@ const UserUnauthenticated = () => {
 
 export function App() {
 	const [auth, setAuth] = useState('N');
-	const uid = localStorage.getItem('uid');
+	const uid = getCookie('uid');
 
 	useEffect(() => {
 		const fecthAuth = async () => {

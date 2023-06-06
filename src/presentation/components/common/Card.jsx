@@ -2,11 +2,12 @@ import React from 'react';
 import bookmark from '../../../assets/images/bookmark.png';
 import { Link, useNavigate } from 'react-router-dom';
 import avatar from '../../../assets/images/avatar.svg';
+import getCookie from '../../../hooks/getCookie';
 
 export const Card = ({ bookData }) => {
 	const navigate = useNavigate();
 	const { name, transactionType, price, images, userOwner, uid } = bookData;
-	const auth = localStorage.getItem('uid');
+	const auth = getCookie('uid');
 
 	const redirectWhatsapp = () => {
 		if (auth) {

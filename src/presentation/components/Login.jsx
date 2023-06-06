@@ -3,11 +3,15 @@ import { book } from '../../assets/images/images';
 import { signin } from '../../services/auth.service';
 import { useNavigate, Link } from 'react-router-dom';
 import { Spinner } from './common/Spinner';
+import setCookie from '../../hooks/setCookie';
+import removeCookie from '../../hooks/removeCookie';
 
-const setCredentialInLocalStoragge = userData => {
+const setCredentialInCookie = userData => {
 	const { uid, displayName } = userData;
-	localStorage.setItem('uid', uid);
-	localStorage.setItem('displayName', displayName);
+	removeCookie('uid');
+	removeCookie('displayName');
+	setCookie('uid', uid);
+	setCookie('displayName', displayName);
 };
 
 export const Login = () => {
@@ -38,7 +42,7 @@ export const Login = () => {
 				return setAlert(
 					'Usuario no verificado. Favor verifique su correo electronico para activar su cuenta.'
 				);
-			setCredentialInLocalStoragge(data);
+			setCredentialInCookie(data);
 			navigate('/');
 		});
 	};
