@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { book } from '../../assets/images/images';
 import { signin } from '../../services/auth.service';
 import { useNavigate, Link } from 'react-router-dom';
+import { Spinner } from './common/Spinner';
 
 const setCredentialInLocalStoragge = userData => {
 	const { uid, displayName } = userData;
@@ -14,8 +15,12 @@ export const Login = () => {
 	const passwordValue = useRef();
 	const [alert, setAlert] = useState('');
 	const navigate = useNavigate();
+	const [textButton, setTextButton] = useState('Iniciar Sesión');
+	const btnLogin = useRef();
 
 	const getData = e => {
+		setTextButton(<Spinner />);
+		btnLogin.current.disabled = true;
 		e.preventDefault();
 		const [email, password] = [
 			emailValue.current.value,
@@ -23,7 +28,11 @@ export const Login = () => {
 		];
 
 		signin({ email, password }).then(data => {
-			if (data.error) return setAlert(data.message);
+			if (data.error) {
+				setTextButton('Iniciar Sesión');
+				btnLogin.current.disabled = false;
+				return setAlert(data.message);
+			}
 
 			if (!data.emailVerified)
 				return setAlert(
@@ -82,8 +91,9 @@ export const Login = () => {
 								type='submit'
 								className='btn btn-dark text-ligth btn-lg btn-block '
 								id='btn-submit'
+								ref={btnLogin}
 							>
-								Iniciar Sesión
+								{textButton}
 							</button>
 
 							<hr className='line-horizontal my-5' />

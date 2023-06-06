@@ -2,16 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import book from '../../assets/images/book.png';
 import { signup } from '../../services/auth.service';
-
-const Spinner = () => {
-	return (
-		<>
-			<div className='spinner-border' role='status'>
-				<span className='sr-only'></span>
-			</div>
-		</>
-	);
-};
+import { Spinner } from './common/Spinner';
 
 const convertPhoneNumber = phoneNumber => {
 	return '+595' + phoneNumber.substr(1, phoneNumber.length);
