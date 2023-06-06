@@ -26,7 +26,7 @@ export const Navbar = ({ auth }) => {
 				</li>
 
 				<li className='nav-item'>
-					<a className='nav-link' id='contacts-item' href='/contacts'>
+					<a className='nav-link' id='contacts-item'>
 						<Link
 							to='/contacts'
 							style={{ color: 'gray', textDecoration: 'none' }}
@@ -63,7 +63,7 @@ export const Navbar = ({ auth }) => {
 								</a>
 							</li>
 							<li>
-								<a className='dropdown-item' id='favourite-item' href=''>
+								<a className='dropdown-item' id='favourite-item'>
 									<Link
 										to='/my-favorites'
 										style={{ color: 'black', textDecoration: 'none' }}
@@ -73,7 +73,7 @@ export const Navbar = ({ auth }) => {
 								</a>
 							</li>
 							<li>
-								<a className='dropdown-item' id='messages-item' href=''>
+								<a className='dropdown-item' id='messages-item'>
 									<Link
 										to='/messages'
 										style={{ color: 'black', textDecoration: 'none' }}

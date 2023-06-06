@@ -13,10 +13,10 @@ import { Loading } from './common/Loading';
 import Swal from 'sweetalert2';
 
 export const BookDetails = () => {
+	const currentUserUID = localStorage.getItem('uid');
 	const auth = 'N';
 	const id = useLocation();
 	const [data, setData] = useState({});
-
 	useEffect(() => {
 		const getData = async () => {
 			const response = await getBookByUid(id.state);
@@ -89,7 +89,9 @@ export const BookDetails = () => {
 										<div className='form-group'>
 											<select
 												className='form-control'
-												disabled={!data.available}
+												disabled={
+													!data.available || data.userId === currentUserUID
+												}
 											>
 												<option>Comprar</option>
 												<option>Permutar</option>
@@ -169,6 +171,7 @@ export const BookDetails = () => {
 								<button
 									type='button'
 									className='btn btn-primary btn-lg btn-block'
+									disabled={data.userId === currentUserUID}
 								>
 									Confirmar Transaccion
 								</button>

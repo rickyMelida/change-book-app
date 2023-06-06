@@ -15,43 +15,42 @@ export const UserSection = ({ userData }) => {
 		<>
 			<div className='icon-users'>
 				<span className='mx-3 icon'>
-					<Link
-						to='/my-favorites'
-						style={{ color: 'gray', textDecoration: 'none' }}
-					>
-						<a href='' id='favorites-item' title='Favoritos'>
+					<a id='favorites-item' title='Favoritos'>
+						<Link
+							to='/my-favorites'
+							style={{ color: 'gray', textDecoration: 'none' }}
+						>
 							<img src={wishList} width='30' alt='' />
-						</a>
-					</Link>
+						</Link>
+					</a>
 				</span>
 
 				<span className='mx-3 icon'>
-					<Link
-						to='/messages'
-						style={{ color: 'gray', textDecoration: 'none' }}
-					>
-						<a href='' id='messages-item' title='Mensajes'>
+					<a id='messages-item' title='Mensajes'>
+						<Link
+							to='/messages'
+							style={{ color: 'gray', textDecoration: 'none' }}
+						>
 							<img src={message} width='30' alt='message' />
-						</a>
-					</Link>
+						</Link>
+					</a>
 				</span>
 
 				<span className='mx-1 dropdown'>
 					<div className='dropdown' style={{ float: 'left' }}>
-						<Link to='/user-profile'>
-							<a
-								href=''
-								className='dropbtn '
-								id='my-profile-item'
-								title={userData.displayName}
-							>
+						<a
+							className='dropbtn '
+							id='my-profile-item'
+							title={userData.displayName}
+						>
+							<Link to='/user-profile'>
 								<img
 									src={!userData.photoURL ? user : userData.photoURL}
 									width='40'
 									alt='user'
 								/>
-							</a>
-						</Link>
+							</Link>
+						</a>
 					</div>
 				</span>
 
@@ -61,7 +60,7 @@ export const UserSection = ({ userData }) => {
 						SignOff();
 					}}
 				>
-					<a href='' id='messages-item' title='Cerrar Sesion'>
+					<a id='messages-item' title='Cerrar Sesion'>
 						<img src={logout} width='30' alt='Cerrar Sesion' />
 					</a>
 				</span>
