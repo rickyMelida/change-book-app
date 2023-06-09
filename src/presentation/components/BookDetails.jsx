@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
 	starGray,
 	starYellow,
@@ -18,6 +18,9 @@ export const BookDetails = () => {
 	const auth = 'N';
 	const id = useLocation();
 	const [data, setData] = useState({});
+	const imageToShow = useRef();
+	const previusImage = useRef();
+
 	useEffect(() => {
 		const getData = async () => {
 			const response = await getBookByUid(id.state);
@@ -28,6 +31,17 @@ export const BookDetails = () => {
 	}, []);
 
 	const isEmpty = Object.entries(data).length === 0;
+
+	const changeImage = e => {
+		const [lastImageSelected] = Array.from(
+			document.querySelectorAll('.image-to-show')
+		);
+		lastImageSelected.classList.remove('image-to-show');
+
+		imageToShow.current.src = e.target.src;
+		previusImage.current.classList.remove('image-to-show');
+		e.target.classList.add('image-to-show');
+	};
 
 	return (
 		<>
@@ -44,6 +58,7 @@ export const BookDetails = () => {
 									alt=''
 									height='500'
 									width='350'
+									ref={imageToShow}
 								/>
 							</div>
 							<div className='col-offset-xl-8'></div>
@@ -59,9 +74,15 @@ export const BookDetails = () => {
 										key={index}
 										alt=''
 										id='book-image1'
-										className='book-image mr-2 image-to-show'
+										className={
+											index === 0
+												? 'book-image mr-2 image-to-show'
+												: 'book-image mr-2'
+										}
 										width='90'
 										height='130'
+										ref={previusImage}
+										onClick={e => changeImage(e)}
 									/>
 								))}
 							</div>
