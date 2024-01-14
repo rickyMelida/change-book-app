@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 // Initialize Firebase
 const app = initializeApp({
@@ -12,4 +13,5 @@ const app = initializeApp({
 });
 // Firebase storage reference
 const storage = getStorage(app);
-export default storage;
+const db = getFirestore(app);
+export  {storage, db};

@@ -12,6 +12,7 @@ import avatar from './avatar.svg';
 import starGray from './estrella_gris.png';
 import starYellow from './estrella_amarilla.png';
 import logout from './logout.png';
+import send from './send.png'
 
 export {
 	facebook,
@@ -24,5 +25,6 @@ export {
 	avatar,
 	starGray,
 	starYellow,
-	logout
+	logout,
+	send
 };

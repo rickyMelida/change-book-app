@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { HomePage } from './pages/Home.page';
-import { Route, Routes, HashRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ContactPage } from './pages/Contacts.page';
 import { UserBooksPage } from './pages/UserBooks.page';
 import { FavoritesPage } from './pages/Favorites.page';
@@ -15,44 +15,32 @@ import { verifyAuth } from './services/auth.service';
 import { AddNewBookPage } from './pages/AddNewBook.page';
 import getCookie from './hooks/getCookie';
 
-const UserAuthenticated = uid => {
+const UserAuthenticated = (uid, auth) => {
+	console.log(auth);
+	console.log(uid);
 	return (
 		<>
-			<HashRouter>
+			<Router>
 				<Routes>
 					<Route index path='/' element={<HomePage />} />
 					<Route path='/contacts' element={<ContactPage />} />
-					<Route path='/my-books' element={<UserBooksPage user={uid} />} />
-					<Route path='/my-favorites' element={<FavoritesPage />} />
-					<Route path='/messages' element={<MessagesPage />} />
-					<Route path='/email' element={<EmailVerify />} />
 					<Route path='/details' element={<BookDetails />} />
-					<Route path='/user-profile' element={<Profile uid={uid} />} />
 					<Route path='/login' element={<Login />} />
 					<Route path='/logout' element={<Logup />} />
-					<Route path='/add-new-book' element={<AddNewBookPage />} />
+
+					<Route path='/my-books' element={<UserBooksPage auth={auth} />} />
+					<Route path='/my-favorites' element={<FavoritesPage auth={auth} />} />
+					<Route path='/messages' element={<MessagesPage auth={auth} />} />
+					<Route path='/email' element={<EmailVerify auth={auth} />} />
+					<Route path='/user-profile' element={<Profile auth={auth} />} />
+					<Route
+						path='/add-new-book'
+						element={<AddNewBookPage auth={auth} />}
+					/>
 					<Route path='*' element={<HomePage />} />
 				</Routes>
-			</HashRouter>
+			</Router>
 		</>
-	);
-};
-
-const UserUnauthenticated = () => {
-	return (
-		<HashRouter>
-			<Routes>
-				<Route index path='/' element={<HomePage />} />
-				<Route path='/contacts' element={<ContactPage />} />
-				<Route path='/details' element={<BookDetails />} />
-				<Route path='/login' element={<Login />} />
-				<Route path='/logout' element={<Logup />} />
-				<Route path='/email-verify' element={<EmailVerify />} />
-				<Route path='/add-new-book' element={<AddNewBookPage />} />
-
-				<Route path='*' element={<HomePage />} />
-			</Routes>
-		</HashRouter>
 	);
 };
 
@@ -69,9 +57,6 @@ export function App() {
 
 		fecthAuth();
 	}, []);
-	if (auth === 'N') {
-		return UserUnauthenticated();
-	} else {
-		return UserAuthenticated(uid);
-	}
+
+	return UserAuthenticated(uid, auth);
 }

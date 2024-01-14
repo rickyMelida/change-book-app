@@ -1,10 +1,9 @@
 import React from 'react';
 import { book } from '../../assets/images/images';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, Navigate } from 'react-router-dom';
 
-export const EmailVerify = ({ email }) => {
+const pageEmailVerified = () => {
 	const location = useLocation();
-	
 	return (
 		<>
 			<div className='container'>
@@ -55,4 +54,10 @@ export const EmailVerify = ({ email }) => {
 			</div>
 		</>
 	);
+};
+
+export const EmailVerify = ({ auth }) => {
+	const isAuthenticated = auth !== 'N';
+
+	return isAuthenticated ? pageEmailVerified() : <Navigate to='/' />;
 };

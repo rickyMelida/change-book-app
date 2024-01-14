@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from '../common/Card';
 import libro from '../../../assets/images/books/libro6.jpg';
 
-export const Favorites = () => {
+export const Favorites = ({userid}) => {
 	const data = {
 		uid: 6,
 		name: 'ESCUELA DE TRADING',

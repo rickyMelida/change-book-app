@@ -6,13 +6,125 @@
     border-radius: 50%;
     margin: auto;
     padding: 10px;
-    border:solid 1px #000;
-}
-
-.middle {
+    border: solid 1px #000;
+  }
+  
+  .middle {
     border-right: 1px solid #000;
-}
-
-.name-chat{
+  }
+  
+  .name-chat {
     margin-left: 25px !important;
-}
+  }
+  
+  .contacts-chats {
+    height: 45vh;
+  }
+  
+  .contacts-chats::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .chat-name {
+    margin-left: 7%;
+  }
+  
+  .messages {
+    height: 50vh;
+  }
+  
+  .messages::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .bubble-chat {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 15px;
+  }
+  
+  .bubble-chat cite {
+    font-size: 10px;
+  }
+  
+  .chat-other {
+    background-color: #303131;
+    color: aliceblue;
+  }
+  
+  .chat-me {
+    background-color: #0d6efd;
+    color: aliceblue;
+    margin-left: 50%;
+    border-color: #fff;
+  }
+  
+  .form-message div input {
+    margin-left: 5%;
+    width: 87%;
+  }
+  
+  .form-message button {
+    float: right;
+    margin-top: -4%;
+  }
+  .from {
+    margin-left: 1%;
+  }
+  
+  @media only screen and (min-width: 1010px) {
+    .chat-name {
+      margin-left: 3%;
+    }
+  }
+  
+  @media only screen and (min-width: 1210px) {
+    .chat-name {
+      margin-left: 1%;
+    }
+  }
+  
+  @media only screen and (max-width: 990px) {
+    .from,
+    .to,
+    .form-search {
+      display: none;
+    }
+    .icon-from,
+    .icon-to {
+      margin-left: 15%;
+    }
+  
+    .icon-from .avatar-sm img {
+      width: 35px;
+    }
+    .icon-from .avatar-sm {
+      width: 55px;
+      height: 55px;
+    }
+  
+    .icon-from .avatar-sm:hover {
+      cursor: pointer;
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .middle {
+      display: none;
+    }
+  
+    .form-message div input{
+      width: 80%;
+    }
+  
+    .form-message button {
+      float: right;
+      margin-top: -11%;
+    }
+  
+    .form-message button img {
+      border-color: #fff !important;
+    }
+  
+  }

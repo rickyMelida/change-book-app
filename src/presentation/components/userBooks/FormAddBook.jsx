@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { setBook } from '../../../services/books.service';
 import Swal from 'sweetalert2';
-import storage from '../../../services/firebaseConfig';
+import { storage } from '../../../services/firebaseConfig';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import getCookie from '../../../hooks/getCookie';
 
