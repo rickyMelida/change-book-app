@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Slider } from './Slider';
 import { Footer } from '../common/Footer';
 import { Others } from '../../sections/Others';
@@ -7,22 +7,29 @@ import { Recent } from '../../sections/Recent';
 import { getBooks } from '../../../services/books.service';
 import { Loading } from '../common/Loading';
 import Swal from 'sweetalert2';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+	setFeaturesBooks,
+	setOtherBook,
+	setRecentBook,
+} from '../../../slices/book.slices';
 
 export const Main = () => {
-	const [feature, setFeature] = useState([]);
-	const [recent, setRecent] = useState([]);
-	const [others, setOthers] = useState([]);
+	const dispatch = useDispatch();
+	const books = useSelector(state =>  state.book);
+	
 
 	useEffect(() => {
 		const loadData = async () => {
 			const response = await getBooks(3);
 			const [featureData, recentData, othersData] = response;
-			setFeature(featureData);
-			setRecent(recentData);
-			setOthers(othersData);
+			dispatch(setRecentBook(recentData));
+			dispatch(setFeaturesBooks(featureData));
+			dispatch(setOtherBook(othersData));
 		};
-
-		loadData();
+		if(books.recentsBook.length <= 0 && books.featuresBook.length <= 0 && books.otherBooks.length <= 0) 
+			loadData();
+		
 	}, []);
 
 	return (
@@ -35,12 +42,12 @@ export const Main = () => {
 				</div>
 
 				<div className='row'>
-					{feature.length > 0 && recent.length > 0 && others.length > 0 ? (
+					{books.recentsBook.length > 0 && books.featuresBook.length > 0 && books.otherBooks.length > 0 ? (
 						<>
 							{Swal.close()}
-							<Outstanding featureData={feature} />
-							<Recent recentData={recent} />
-							<Others otherData={others} />
+							<Outstanding/>
+							<Recent />
+							<Others/>
 						</>
 					) : (
 						<Loading />

@@ -18,6 +18,7 @@ export const Slider = () => {
 
 	const isEmpty = Object.entries(data).length === 0;
 
+
 	if (isEmpty) {
 		return dataDefault;
 	}

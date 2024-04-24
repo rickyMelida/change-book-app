@@ -14,32 +14,37 @@ import { Profile } from './pages/Profile.page';
 import { verifyAuth } from './services/auth.service';
 import { AddNewBookPage } from './pages/AddNewBook.page';
 import getCookie from './hooks/getCookie';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
 const UserAuthenticated = (uid, auth) => {
-	console.log(auth);
-	console.log(uid);
 	return (
 		<>
-			<Router>
-				<Routes>
-					<Route index path='/' element={<HomePage />} />
-					<Route path='/contacts' element={<ContactPage />} />
-					<Route path='/details' element={<BookDetails />} />
-					<Route path='/login' element={<Login />} />
-					<Route path='/logout' element={<Logup />} />
+			<Provider store={store}>
+				<Router>
+					<Routes>
+						<Route index path='/' element={<HomePage />} />
+						<Route path='/contacts' element={<ContactPage />} />
+						<Route path='/details' element={<BookDetails />} />
+						<Route path='/login' element={<Login />} />
+						<Route path='/logout' element={<Logup />} />
 
-					<Route path='/my-books' element={<UserBooksPage auth={auth} />} />
-					<Route path='/my-favorites' element={<FavoritesPage auth={auth} />} />
-					<Route path='/messages' element={<MessagesPage auth={auth} />} />
-					<Route path='/email' element={<EmailVerify auth={auth} />} />
-					<Route path='/user-profile' element={<Profile auth={auth} />} />
-					<Route
-						path='/add-new-book'
-						element={<AddNewBookPage auth={auth} />}
-					/>
-					<Route path='*' element={<HomePage />} />
-				</Routes>
-			</Router>
+						<Route path='/my-books' element={<UserBooksPage auth={auth} />} />
+						<Route
+							path='/my-favorites'
+							element={<FavoritesPage auth={auth} />}
+						/>
+						<Route path='/messages' element={<MessagesPage auth={auth} />} />
+						<Route path='/email' element={<EmailVerify auth={auth} />} />
+						<Route path='/user-profile' element={<Profile auth={auth} />} />
+						<Route
+							path='/add-new-book'
+							element={<AddNewBookPage auth={auth} />}
+						/>
+						<Route path='*' element={<HomePage />} />
+					</Routes>
+				</Router>
+			</Provider>
 		</>
 	);
 };

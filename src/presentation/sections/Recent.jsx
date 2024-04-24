@@ -2,16 +2,18 @@ import React from 'react';
 import { TitleSection } from '../components/common/TitleSection';
 import { Card } from '../components/common/Card';
 import getCookie from '../../hooks/getCookie';
+import { useSelector } from 'react-redux';
 
-export const Recent = ({ recentData }) => {
+export const Recent = () => {
 	const currentUserUID = getCookie('uid');
+	const { recentsBook } = useSelector(state => state.book);
 
 	return (
 		<>
 			<div className='row bg-light my-5' id='recents'>
 				<TitleSection name={'Recientes'} />
 
-				{recentData.map(element =>
+				{recentsBook[0].map(element =>
 					element.userId === currentUserUID ? (
 						''
 					) : (

@@ -43,6 +43,14 @@ export const BookDetails = () => {
 		e.target.classList.add('image-to-show');
 	};
 
+	const makeTransaction = () => {
+		const userInterested = document.cookie
+			.split(';')
+			.find(cookie => cookie.includes('uid'))
+			.split('=')[1];
+		console.log(userInterested);
+	};
+
 	return (
 		<>
 			<Header auth={auth} />
@@ -194,6 +202,7 @@ export const BookDetails = () => {
 									type='button'
 									className='btn btn-primary btn-lg btn-block'
 									disabled={data.userId === currentUserUID}
+									onClick={makeTransaction}
 								>
 									Confirmar Transaccion
 								</button>
