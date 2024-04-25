@@ -1,5 +1,7 @@
-const URL_API = 'https://book-change-api-firebase.onrender.com/api/';
+import { useDispatch } from 'react-redux';
+import { reset } from '../slices/auth.slice';
 
+const URL_API = 'https://book-change-api-firebase.onrender.com/api/';
 
 export const signin = async data => {
 	const url = `${URL_API}auth/signin`;
@@ -31,6 +33,7 @@ export const signup = async data => {
 
 export const signout = async () => {
 	const url = `${URL_API}auth/signout`;
+	const dispatch = useDispatch();
 
 	const response = await fetch(url, {
 		method: 'POST',
@@ -39,10 +42,11 @@ export const signout = async () => {
 		},
 	});
 
+	dispatch(reset());
 	return await response.json();
 };
 
-export const verifyAuth = async (uid) => {
+export const verifyAuth = async uid => {
 	const url = `${URL_API}auth/${uid}`;
 
 	const response = await fetch(url, {

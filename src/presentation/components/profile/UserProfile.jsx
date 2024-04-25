@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { avatar } from '../../../assets/images/images';
 import { getUserInfo } from '../../../services/user.service';
+import { useSelector } from 'react-redux';
 
-export const UserProfile = ({ userUid }) => {
+export const UserProfile = () => {
 	const [userInfo, setUserInfo] = useState({});
+	const {uid} = useSelector(state =>  state.auth);
 
 	useEffect(() => {
 		const fecthUserInfo = async () => {
-			const { displayName, photoURL } = await getUserInfo(userUid);
+			const { displayName, photoURL } = await getUserInfo(uid);
 			setUserInfo({ displayName, photoURL });
 		};
 

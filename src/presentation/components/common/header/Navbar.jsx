@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signout } from '../../../../services/auth.service';
+import { useSelector } from 'react-redux';
 
-export const Navbar = ({ auth }) => {
+export const Navbar = () => {
 	const navigate = useNavigate();
+	const auth = useSelector(state =>  state.auth);
 
 	const redirectLogin = async () => {
-		if (auth === 'N') navigate('/login');
+		if (auth.uid) navigate('/login');
 		else await signout();
 	};
 	return (
@@ -36,7 +38,7 @@ export const Navbar = ({ auth }) => {
 					</a>
 				</li>
 
-				{auth !== 'N' ? (
+				{auth.uid ? (
 					<li className='nav-item dropdown users-details' id='users-details'>
 						<a
 							className='nav-link dropdown-toggle'
@@ -98,7 +100,7 @@ export const Navbar = ({ auth }) => {
 						id='contacts-item'
 						style={{ color: 'gray', textDecoration: 'none' }}
 					>
-						{auth === 'N' ? 'Iniciar Sesión' : 'Cerrar Sesión'}
+						{!auth.uid ? 'Iniciar Sesión' : 'Cerrar Sesión'}
 					</a>
 				</li>
 			</ul>

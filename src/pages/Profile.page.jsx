@@ -4,16 +4,16 @@ import { Header } from '../presentation/components/common/header/Header';
 import { UserBooks } from '../presentation/components/userBooks/UserBooks';
 import { CardAddBook } from '../presentation/components/userBooks/CardAddBook';
 import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-export const Profile = ({ auth }) => {
-	const isAuthenticated = auth !== 'N';
-	const uid = isAuthenticated ? auth.uid : null;
+export const Profile = () => {
+	const auth = useSelector(state => state.auth);
 
-	return isAuthenticated ? (
+	return auth.uid ? (
 		<>
 			<Header />
-			<UserProfile userUid={uid} />
-			<UserBooks userUid={uid} />
+			<UserProfile />
+			<UserBooks />
 			<CardAddBook />
 		</>
 	) : (

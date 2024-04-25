@@ -2,14 +2,15 @@ import React from 'react';
 import { Favorites } from '../presentation/components/favorites/Favorites';
 import { Header } from '../presentation/components/common/header/Header';
 import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-export const FavoritesPage = ({ auth }) => {
-	const isAuthenticated = auth !== 'N';
-	const userUid = isAuthenticated ? auth.uid : null;
-	return isAuthenticated ? (
+export const FavoritesPage = () => {
+	const auth = useSelector(state => state.auth);
+
+	return auth.uid ? (
 		<>
 			<Header />
-			<Favorites userId={userUid} />
+			<Favorites />
 		</>
 	) : (
 		<Navigate to='/' />

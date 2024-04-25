@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ContactPage } from './pages/Contacts.page';
 import { UserBooksPage } from './pages/UserBooks.page';
 import { FavoritesPage } from './pages/Favorites.page';
-import { MessagesPage } from './pages/Messages.page';
+import  BuildinPage from './presentation/components/common/BuildinPage';
 import { Login } from './presentation/components/Login';
 import { Logup } from './presentation/components/Logup';
 import { EmailVerify } from './presentation/components/EmailVerify';
@@ -17,7 +17,7 @@ import getCookie from './hooks/getCookie';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 
-const UserAuthenticated = (uid, auth) => {
+const UserAuthenticated = auth => {
 	return (
 		<>
 			<Provider store={store}>
@@ -28,19 +28,12 @@ const UserAuthenticated = (uid, auth) => {
 						<Route path='/details' element={<BookDetails />} />
 						<Route path='/login' element={<Login />} />
 						<Route path='/logout' element={<Logup />} />
-
-						<Route path='/my-books' element={<UserBooksPage auth={auth} />} />
-						<Route
-							path='/my-favorites'
-							element={<FavoritesPage auth={auth} />}
-						/>
-						<Route path='/messages' element={<MessagesPage auth={auth} />} />
-						<Route path='/email' element={<EmailVerify auth={auth} />} />
-						<Route path='/user-profile' element={<Profile auth={auth} />} />
-						<Route
-							path='/add-new-book'
-							element={<AddNewBookPage auth={auth} />}
-						/>
+						<Route path='/my-books' element={<UserBooksPage />} />
+						<Route path='/my-favorites' element={<FavoritesPage />} />
+						<Route path='/messages' element={<BuildinPage />} />
+						<Route path='/email' element={<EmailVerify />} />
+						<Route path='/user-profile' element={<Profile />} />
+						<Route path='/add-new-book' element={<AddNewBookPage />} />
 						<Route path='*' element={<HomePage />} />
 					</Routes>
 				</Router>
@@ -63,5 +56,5 @@ export function App() {
 		fecthAuth();
 	}, []);
 
-	return UserAuthenticated(uid, auth);
+	return UserAuthenticated(auth);
 }

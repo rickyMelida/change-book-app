@@ -1,6 +1,7 @@
 import React from 'react';
 import { book } from '../../assets/images/images';
 import { Link, useLocation, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const pageEmailVerified = () => {
 	const location = useLocation();
@@ -56,8 +57,8 @@ const pageEmailVerified = () => {
 	);
 };
 
-export const EmailVerify = ({ auth }) => {
-	const isAuthenticated = auth !== 'N';
+export const EmailVerify = () => {
+	const auth = useSelector(state => state.auth);
 
-	return isAuthenticated ? pageEmailVerified() : <Navigate to='/' />;
+	return auth.uid ? pageEmailVerified() : <Navigate to='/' />;
 };

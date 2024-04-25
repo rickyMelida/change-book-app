@@ -12,7 +12,6 @@ export const Message = () => {
 
 	const messageValue = useRef();
 	const [message, setMessage] = useState([]);
-	const uid = getCookie('uid');
 	const user = getCookie('displayName').split(' ')[0];
 	const [otherUser, setotherUser] = useState('');
 

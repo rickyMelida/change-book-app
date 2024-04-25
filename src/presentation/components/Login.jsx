@@ -3,16 +3,8 @@ import { book } from '../../assets/images/images';
 import { signin } from '../../services/auth.service';
 import { useNavigate, Link } from 'react-router-dom';
 import { Spinner } from './common/Spinner';
-import setCookie from '../../hooks/setCookie';
-import removeCookie from '../../hooks/removeCookie';
-
-const setCredentialInCookie = userData => {
-	const { uid, displayName } = userData;
-	removeCookie('uid');
-	removeCookie('displayName');
-	setCookie('uid', uid);
-	setCookie('displayName', displayName);
-};
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../slices/auth.slice';
 
 export const Login = () => {
 	const emailValue = useRef();
@@ -21,6 +13,7 @@ export const Login = () => {
 	const navigate = useNavigate();
 	const [textButton, setTextButton] = useState('Iniciar Sesión');
 	const btnLogin = useRef();
+	const dispatch = useDispatch();
 
 	const getData = e => {
 		setTextButton(<Spinner />);
@@ -42,7 +35,8 @@ export const Login = () => {
 				return setAlert(
 					'Usuario no verificado. Favor verifique su correo electronico para activar su cuenta.'
 				);
-			setCredentialInCookie(data);
+			dispatch(setUser(data));
+
 			navigate('/');
 		});
 	};

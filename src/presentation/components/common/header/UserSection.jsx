@@ -1,17 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
 	wishList,
 	message,
 	user,
 	logout,
 } from '../../../../assets/images/images';
-import removeCookie from '../../../../hooks/removeCookie';
+import { useDispatch, useSelector } from 'react-redux';
+import { reset } from '../../../../slices/auth.slice';
 
-export const UserSection = ({ userData }) => {
+export const UserSection = () => {
+	const userData = useSelector(state =>  state.auth);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
 	const SignOff = () => {
-		removeCookie('uid');
-		removeCookie('displayName');
+		dispatch(reset());
+		navigate('/');
 	};
 	return (
 		<>
@@ -58,6 +63,7 @@ export const UserSection = ({ userData }) => {
 
 				<span
 					className='mx-3 icon'
+					style={{cursor: "pointer"}}
 					onClick={() => {
 						SignOff();
 					}}

@@ -2,15 +2,15 @@ import React from 'react';
 import { UserBooks } from '../presentation/components/userBooks/UserBooks';
 import { Header } from '../presentation/components/common/header/Header';
 import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-export const UserBooksPage = ({ auth }) => {
-	const isAuthenticated = auth !== 'N';
-	const userUid = isAuthenticated ? auth.uid : null;
-	
-	return isAuthenticated ? (
+export const UserBooksPage = () => {
+	const auth = useSelector(state => state.auth);
+
+	return auth.uid ? (
 		<>
 			<Header />
-			<UserBooks user={userUid} />
+			<UserBooks />
 		</>
 	) : (
 		<Navigate to='/' />

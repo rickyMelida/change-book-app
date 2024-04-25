@@ -2,11 +2,12 @@ import React from 'react';
 import { Message } from '../presentation/components/messages/Message';
 import { Header } from '../presentation/components/common/header/Header';
 import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-export const MessagesPage = ({ auth }) => {
-	const isAuthenticated = auth !== 'N';
+export const MessagesPage = () => {
+	const auth = useSelector(state => state.auth);
 
-	return isAuthenticated ? (
+	return auth.uid ? (
 		<>
 			<Header />
 			<Message />

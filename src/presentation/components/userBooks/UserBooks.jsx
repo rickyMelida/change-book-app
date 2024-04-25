@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Card } from '../common/Card';
 import { getUserBooks } from '../../../services/books.service';
+import { useSelector } from 'react-redux';
 
-export const UserBooks = ({ userUid }) => {
+export const UserBooks = () => {
+	const { uid } = useSelector(state => state.auth);
+
 	const [books, setBooks] = useState([]);
 
 	useEffect(() => {
 		const fecthBooks = async () => {
-			const result = await getUserBooks(userUid);
+			const result = await getUserBooks(uid);
 			setBooks(result);
 		};
 
