@@ -21,17 +21,17 @@ export const Footer = () => {
           <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
             <li className="ms-3">
               <a className="text-muted" href="#">
-                <img src={facebook} alt="Facebook" width="24" srcSet="" />
+                <img src={facebook} alt="Facebook" width="24" srcSet="" loading='lazy'/>
               </a>
             </li>
             <li className="ms-3">
               <a className="text-muted" href="#">
-                <img src={instagram} alt="Instagram" width="24" srcSet="" />
+                <img src={instagram} alt="Instagram" width="24" srcSet="" loading='lazy'/>
               </a>
             </li>
             <li className="ms-3">
               <a className="text-muted" href="#">
-                <img src={twitter} alt="Twitter" width="24" srcSet="" />
+                <img src={twitter} alt="Twitter" width="24" srcSet="" loading='lazy'/>
               </a>
             </li>
           </ul>

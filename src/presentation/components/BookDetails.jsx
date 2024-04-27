@@ -67,6 +67,7 @@ export const BookDetails = () => {
 									height='500'
 									width='350'
 									ref={imageToShow}
+									loading='lazy'
 								/>
 							</div>
 							<div className='col-offset-xl-8'></div>
@@ -91,6 +92,7 @@ export const BookDetails = () => {
 										height='130'
 										ref={previusImage}
 										onClick={e => changeImage(e)}
+										loading='lazy'
 									/>
 								))}
 							</div>
@@ -167,31 +169,31 @@ export const BookDetails = () => {
 								<div className='col-md-6'>
 									<span className='pt-3'>Calificaciones: </span>
 									<span>
-										<img src={starYellow} alt='' width='30' />
+										<img src={starYellow} alt='' width='30' loading='lazy'/>
 									</span>
 									<span>
-										<img src={starYellow} alt='' width='30' />
+										<img src={starYellow} alt='' width='30' loading='lazy'/>
 									</span>
 									<span>
-										<img src={starYellow} alt='' width='30' />
+										<img src={starYellow} alt='' width='30' loading='lazy'/>
 									</span>
 									<span>
-										<img src={starGray} alt='' width='25' />
+										<img src={starGray} alt='' width='25' loading='lazy'/>
 									</span>
 									<span>
-										<img src={starGray} alt='' width='25' />
+										<img src={starGray} alt='' width='25' loading='lazy'/>
 									</span>
 								</div>
 								<div className='col-md-6 mt-1'>
 									<span>Comparti con:</span>
 									<a className='text-muted px-2' href='#'>
-										<img src={facebook} alt='' width='14' />
+										<img src={facebook} alt='' width='14' loading='lazy'/>
 									</a>
 									<a className='text-muted px-2' href='#'>
-										<img src={instagram} alt='' width='14' />
+										<img src={instagram} alt='' width='14' loading='lazy'/>
 									</a>
 									<a className='text-muted px-2' href='#'>
-										<img src={twitter} alt='' width='14' />
+										<img src={twitter} alt='' width='14' loading='lazy'/>
 									</a>
 								</div>
 							</div>

@@ -12,7 +12,7 @@ const pageEmailVerified = () => {
 					<div className='col-6 offset-3 '>
 						<div className='mx-auto my-5 text-center'>
 							<a className='navbar-brand' href='#' title='Inicio'>
-								<img src={book} alt='' width='50' />
+								<img src={book} alt='' width='50' loading='lazy'/>
 							</a>
 							<h3 className='text-'>Comprobar correo electronico</h3>
 						</div>

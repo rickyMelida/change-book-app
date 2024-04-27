@@ -65,7 +65,7 @@ export const Logup = () => {
 							<div className='col-md-12'>
 								<div className='mx-auto text-center'>
 									<a className='navbar-brand' href='#' title='Inicio'>
-										<img src={book} alt='' width='50' />
+										<img src={book} alt='' width='50' loading='lazy'/>
 									</a>
 									<h3>Change Books</h3>
 								</div>

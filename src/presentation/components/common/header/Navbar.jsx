@@ -1,15 +1,17 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { signout } from '../../../../services/auth.service';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { reset } from '../../../../slices/auth.slice';
 
 export const Navbar = () => {
 	const navigate = useNavigate();
-	const auth = useSelector(state =>  state.auth);
+	const dispatch = useDispatch();
+
+	const auth = useSelector(state => state.auth);
 
 	const redirectLogin = async () => {
-		if (auth.uid) navigate('/login');
-		else await signout();
+		if (auth.uid) dispatch(reset());
+		else navigate('/login');
 	};
 	return (
 		<>

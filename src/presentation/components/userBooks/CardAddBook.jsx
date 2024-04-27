@@ -20,6 +20,7 @@ export const CardAddBook = () => {
 									height='350'
 									className='card-img-top image-add-book text-center'
 									id='add-new-book'
+									loading='lazy'
 								/>
 								<div className='card-body'>
 									<h5 className='card-title text-center text-dark'>

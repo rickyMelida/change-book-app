@@ -7,11 +7,12 @@ import { useDispatch } from 'react-redux';
 import { setUser } from '../../slices/auth.slice';
 
 export const Login = () => {
+	const [textButton, setTextButton] = useState('Iniciar Sesión');
+	const [alert, setAlert] = useState('');
+	const [showPassword, setShowPassword] = useState('password');
 	const emailValue = useRef();
 	const passwordValue = useRef();
-	const [alert, setAlert] = useState('');
 	const navigate = useNavigate();
-	const [textButton, setTextButton] = useState('Iniciar Sesión');
 	const btnLogin = useRef();
 	const dispatch = useDispatch();
 
@@ -25,20 +26,24 @@ export const Login = () => {
 		];
 
 		signin({ email, password }).then(data => {
-			if (data.error) {
+			if (data.error || !data.emailVerified) {
+				const messageAlert = data.message
+					? data.message
+					: 'Usuario no verificado. Favor verifique su correo electronico para activar su cuenta.';
 				setTextButton('Iniciar Sesión');
 				btnLogin.current.disabled = false;
-				return setAlert(data.message);
+				return setAlert(messageAlert);
 			}
 
-			if (!data.emailVerified)
-				return setAlert(
-					'Usuario no verificado. Favor verifique su correo electronico para activar su cuenta.'
-				);
 			dispatch(setUser(data));
+			localStorage.setItem('accessToken', data.stsTokenManager.accessToken);
 
 			navigate('/');
 		});
+	};
+
+	const handleShowPassword = () => {
+		setShowPassword(showPassword === 'password' ? 'text' : 'password');
 	};
 
 	return (
@@ -50,7 +55,7 @@ export const Login = () => {
 							<div className='col-md-12'>
 								<div className='mx-auto text-center'>
 									<a className='navbar-brand' href='#' title='Inicio'>
-										<img src={book} alt='' width='50' />
+										<img src={book} alt='' width='50' loading='lazy'/>
 									</a>
 									<h3>Change Books</h3>
 								</div>
@@ -78,12 +83,27 @@ export const Login = () => {
 								<label htmlFor='password' className='font-weight-bold'>
 									Contraseña
 								</label>
-								<input
-									type='password'
-									className='form-control'
-									id='password'
-									ref={passwordValue}
-								/>
+								<div className='user-box'>
+									<input
+										type={showPassword}
+										className='form-control'
+										id='password'
+										ref={passwordValue}
+									/>
+
+									<span
+										className='password-toggle-icon'
+										style={{
+											float: 'right',
+											marginTop: '-9%',
+											marginRight: '5%',
+											cursor: 'pointer',
+										}}
+										onClick={handleShowPassword}
+									>
+										<i className='fas fa-eye'></i>
+									</span>
+								</div>
 							</div>
 							<button
 								type='submit'

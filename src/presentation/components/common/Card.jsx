@@ -37,7 +37,7 @@ export const Card = ({ bookData }) => {
 							redirect({ uid });
 						}}
 					>
-						<img src={images[0]} className='card-img-top' height='350' />
+						<img src={images[0]} className='card-img-top' height='350' loading="lazy"/>
 					</div>
 
 					<div className='card-body' style={{ paddingBottom: '-15px' }}>
@@ -87,6 +87,7 @@ export const Card = ({ bookData }) => {
 										title={userOwner}
 										className='avatar'
 										width='10'
+										loading='lazy'
 									/>
 								</span>
 							</Link>
@@ -96,6 +97,7 @@ export const Card = ({ bookData }) => {
 									title='Agregar como favorito'
 									className='favourite'
 									width='35'
+									loading='lazy'
 								/>
 							</span>
 						</section>

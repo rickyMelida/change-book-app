@@ -22,7 +22,7 @@ export const Header = () => {
 							onClick={() => navigate('/')}
 							style={{ cursor: 'pointer' }}
 						>
-							<img src={book} alt='Book Change' width='50' />
+							<img src={book} alt='Book Change' width='50' loading='lazy'/>
 
 							<h2 className='d-inline' id='p-title'>
 								Libros Libres Py

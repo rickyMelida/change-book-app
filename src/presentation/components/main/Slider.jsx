@@ -43,7 +43,7 @@ export const Slider = () => {
 								redirect(element.uid);
 							}}
 						>
-							<img src={element.images[0]} className='d-block w-100' />
+							<img src={element.images[0]} className='d-block w-100' loading='lazy'/>
 						</div>
 					))}
 				</div>
@@ -86,16 +86,16 @@ const dataDefault = () => {
 		>
 			<div className='carousel-inner' id='carousel-container'>
 				<div className='carousel-item active'>
-					<img src={book1} className='d-block w-100' />
+					<img src={book1} className='d-block w-100' loading='lazy'/>
 				</div>
 				<div className='carousel-item'>
-					<img src={book2} className='d-block w-100' />
+					<img src={book2} className='d-block w-100' loading='lazy'/>
 				</div>
 				<div className='carousel-item'>
-					<img src={book3} className='d-block w-100' />
+					<img src={book3} className='d-block w-100' loading='lazy'/>
 				</div>
 				<div className='carousel-item'>
-					<img src={book4} className='d-block w-100' />
+					<img src={book4} className='d-block w-100' loading='lazy'/>
 				</div>
 			</div>
 			<button

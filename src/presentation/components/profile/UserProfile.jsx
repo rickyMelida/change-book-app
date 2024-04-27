@@ -28,6 +28,7 @@ export const UserProfile = () => {
 									alt='Avatar'
 									width='80'
 									style={{borderRadius: '50%'}}
+									loading='lazy'
 								/>
 							</div>
 						</div>

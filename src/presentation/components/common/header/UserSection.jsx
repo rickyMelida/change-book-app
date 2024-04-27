@@ -27,7 +27,7 @@ export const UserSection = () => {
 							to='/my-favorites'
 							style={{ color: 'gray', textDecoration: 'none' }}
 						>
-							<img src={wishList} width='30' alt='' />
+							<img src={wishList} width='30' alt='' loading='lazy'/>
 						</Link>
 					</a>
 				</span>
@@ -38,7 +38,7 @@ export const UserSection = () => {
 							to='/messages'
 							style={{ color: 'gray', textDecoration: 'none' }}
 						>
-							<img src={message} width='30' alt='message' />
+							<img src={message} width='30' alt='message' loading='lazy'/>
 						</Link>
 					</a>
 				</span>
@@ -55,6 +55,7 @@ export const UserSection = () => {
 									src={!userData.photoURL ? user : userData.photoURL}
 									width='40'
 									alt='user'
+									loading='lazy'
 								/>
 							</Link>
 						</a>
@@ -69,7 +70,7 @@ export const UserSection = () => {
 					}}
 				>
 					<a id='messages-item' title='Cerrar Sesion'>
-						<img src={logout} width='30' alt='Cerrar Sesion' />
+						<img src={logout} width='30' alt='Cerrar Sesion' loading='lazy'/>
 					</a>
 				</span>
 			</div>

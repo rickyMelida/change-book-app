@@ -12,9 +12,7 @@ const authSlice = createSlice({
 				...action.payload,
 			};
 		},
-		reset: (state, action) => {
-			return initialState
-		}
+		reset: (state, action) => initialState,
 	},
 });
 

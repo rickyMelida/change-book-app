@@ -78,6 +78,7 @@ export const Message = () => {
 									alt='Avatar'
 									title='Ricardo Melida'
 									width='30'
+									loading='lazy'
 								/>
 							</div>
 						</div>
@@ -118,6 +119,7 @@ export const Message = () => {
 													title='Nelly Ruiz Diaz'
 													alt='Avatar'
 													width='30'
+													loading='lazy'
 												/>
 											</div>
 										</div>
@@ -140,6 +142,7 @@ export const Message = () => {
 													title='Nelly Ruiz Diaz'
 													alt='Avatar'
 													width='30'
+													loading='lazy'
 												/>
 											</div>
 										</div>
@@ -162,6 +165,7 @@ export const Message = () => {
 													alt='Avatar'
 													title='Jose Franco'
 													width='30'
+													loading='lazy'
 												/>
 											</div>
 										</div>
@@ -184,6 +188,7 @@ export const Message = () => {
 													alt='Avatar'
 													title='Samuel Frutos'
 													width='30'
+													loading='lazy'
 												/>
 											</div>
 										</div>
@@ -206,6 +211,7 @@ export const Message = () => {
 													alt='Avatar'
 													title='Eduardo Esquivel'
 													width='30'
+													loading='lazy'
 												/>
 											</div>
 										</div>
@@ -228,6 +234,7 @@ export const Message = () => {
 													alt='Avatar'
 													title='Luis Cabrera'
 													width='30'
+													loading='lazy'
 												/>
 											</div>
 										</div>
@@ -248,7 +255,7 @@ export const Message = () => {
 					<div className='row align-items-center'>
 						<div className='col-md-1 col-lg-1 '>
 							<div className='avatar-sm name-chat'>
-								<img src={avatar} alt='Avatar' width='30' />
+								<img src={avatar} alt='Avatar' width='30' loading='lazy'/>
 							</div>
 						</div>
 						<div className='col-md-10 col-lg-10 chat-name'>
@@ -297,7 +304,7 @@ export const Message = () => {
 												/>
 											</div>
 											<button type='submit' className='btn btn-primary'>
-												<img src={send} alt='Send' width='25' title='Enviar' />
+												<img src={send} alt='Send' width='25' title='Enviar' loading='lazy'/>
 											</button>
 										</form>
 									</div>
