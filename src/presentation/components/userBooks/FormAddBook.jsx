@@ -66,6 +66,7 @@ export const FormAddBook = () => {
 		litleDescripcion: '',
 		state: 'Nuevo',
 		transactionType: 'Venta',
+		userInterested: []
 	};
 
 	const updateBookInfo = e => {
