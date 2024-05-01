@@ -13,7 +13,7 @@ export const Others = () => {
 			<div className='row bg-light my-5' id='others'>
 				<TitleSection name={'Otros'} />
 
-				{otherBooks[0].map(element =>
+				{otherBooks.map(element =>
 					element.userId === currentUserUID ? (
 						''
 					) : (

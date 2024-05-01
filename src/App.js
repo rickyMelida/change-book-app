@@ -15,7 +15,7 @@ import { verifyAuth } from './services/auth.service';
 import { AddNewBookPage } from './pages/AddNewBook.page';
 import getCookie from './hooks/getCookie';
 import { Provider } from 'react-redux';
-import { store } from './store/store';
+import store  from './store/store';
 
 const UserAuthenticated = auth => {
 	return (

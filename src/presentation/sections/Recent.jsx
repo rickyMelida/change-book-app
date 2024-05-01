@@ -13,7 +13,7 @@ export const Recent = () => {
 			<div className='row bg-light my-5' id='recents'>
 				<TitleSection name={'Recientes'} />
 
-				{recentsBook[0].map(element =>
+				{recentsBook.map(element =>
 					element.userId === currentUserUID ? (
 						''
 					) : (

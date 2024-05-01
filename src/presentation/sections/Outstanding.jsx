@@ -13,7 +13,7 @@ export const Outstanding = () => {
 			<div className='row bg-light my-5' id='outstanding'>
 				<TitleSection name={'Destacados'} />
 
-				{featuresBook[0].map(element =>
+				{featuresBook.map(element =>
 					element.userId === currentUserUID ? (
 						''
 					) : (

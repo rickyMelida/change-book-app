@@ -70,3 +70,17 @@ export const setFavourite = async data => {
 
 	return await response.json();
 };
+
+export const removeAsFavourite = async data => {
+	const { bookId, userId } = data;
+	const url = `${URL_API}book/removeFavourite/${bookId}/${userId}`;
+	const response = await fetch(url, {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(data),
+	});
+
+	return await response.json();
+};

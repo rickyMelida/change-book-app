@@ -3,25 +3,23 @@ import bookmark from '../../../assets/images/bookmark.png';
 import bookmarkActive from '../../../assets/images/bookmark_active.png';
 import { Link, useNavigate } from 'react-router-dom';
 import avatar from '../../../assets/images/avatar.svg';
-import getCookie from '../../../hooks/getCookie';
-import { setFavourite } from '../../../services/books.service';
-import { useSelector } from 'react-redux';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Toast from 'react-bootstrap/Toast';
+import {
+	removeAsFavourite,
+	setFavourite,
+} from '../../../services/books.service';
+import { useDispatch, useSelector } from 'react-redux';
+import { verifyAuth } from '../../../services/auth.service';
+import { setMessageLogin } from '../../../slices/messages.slice';
 
 const verifyUserInterested = (userInterested, userData) => {
-	if (userInterested) {
-		console.log(userInterested);
-		return userInterested.includes(userData.uid);
-	}
+	if (userInterested) return userInterested.includes(userData.uid);
 
 	return false;
 };
 
 export const Card = ({ bookData }) => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const {
 		name,
 		transactionType,
@@ -31,9 +29,9 @@ export const Card = ({ bookData }) => {
 		uid,
 		userInterested,
 	} = bookData;
-	const auth = getCookie('uid');
+
 	const userData = useSelector(state => state.auth);
-	const [showToast, setShowToast] = useState(false);
+	const auth = userData?.stsTokenManager?.accessToken;
 
 	const [markedAsFavourite, setMarkedAsFavourite] = useState(
 		verifyUserInterested(userInterested, userData)
@@ -58,18 +56,41 @@ export const Card = ({ bookData }) => {
 	};
 
 	const handleFavourite = () => {
-		setFavourite({
-			userId: userData.uid,
-			bookId: uid,
-		}).then(res => {
-			setShowToast(true);
-			setMarkedAsFavourite(!markedAsFavourite);
-		});
+		verifyAuth(auth)
+			.then(resp => {
+				if (resp.message) {
+					dispatch(
+						setMessageLogin('Debe de loguearse para marcar como favorito')
+					);
+					navigate('/login');
+					return;
+				}
+
+				if (markedAsFavourite) {
+					removeAsFavourite({
+						userId: userData.uid,
+						bookId: uid,
+					}).then(res => {
+						setMarkedAsFavourite(!markedAsFavourite);
+					});
+					console.log('se desmarca');
+				} else {
+					setFavourite({
+						userId: userData.uid,
+						bookId: uid,
+					}).then(res => {
+						setMarkedAsFavourite(!markedAsFavourite);
+					});
+					console.log('se MARCA');
+				}
+			})
+			.catch(() => {
+				navigate('/login');
+			});
 	};
 
 	return (
 		<>
-			<ToastComponent value={showToast} returnValue={(valor) => setShowToast(valor)}/>
 			<div>
 				<div className='card' style={{ width: '18rem' }} id='book-8'>
 					<div
@@ -155,26 +176,4 @@ export const Card = ({ bookData }) => {
 			</div>
 		</>
 	);
-};
-
-const ToastComponent = ({value, returnValue}) => {
-	
-	return (
-		<Row style={{position: 'sticky', top: 0, left:'50%', display:'flex'}}>
-		  <Col xs={12}>
-			<Toast onClose={() => returnValue(false)} show={value} delay={3000} autohide>
-			  <Toast.Header>
-				<img
-				  src="holder.js/20x20?text=%20"
-				  className="rounded me-2"
-				  alt=""
-				/>
-				<strong className="me-auto">Agregado Favorito</strong>
-				<small>Ahora</small>
-			  </Toast.Header>
-			  <Toast.Body>Se ha agregado el libro a tus favoritos!</Toast.Body>
-			</Toast>
-		  </Col>
-		</Row>
-	  );
 };

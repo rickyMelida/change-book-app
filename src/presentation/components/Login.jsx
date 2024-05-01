@@ -3,13 +3,14 @@ import { book } from '../../assets/images/images';
 import { signin } from '../../services/auth.service';
 import { useNavigate, Link } from 'react-router-dom';
 import { Spinner } from './common/Spinner';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../slices/auth.slice';
 
 export const Login = () => {
 	const [textButton, setTextButton] = useState('Iniciar Sesión');
-	const [alert, setAlert] = useState('');
 	const [showPassword, setShowPassword] = useState('password');
+	const [alert, setAlert] = useState(undefined);
+	const { loginMessage } = useSelector(state => state.messages);
 	const emailValue = useRef();
 	const passwordValue = useRef();
 	const navigate = useNavigate();
@@ -55,7 +56,7 @@ export const Login = () => {
 							<div className='col-md-12'>
 								<div className='mx-auto text-center'>
 									<a className='navbar-brand' href='#' title='Inicio'>
-										<img src={book} alt='' width='50' loading='lazy'/>
+										<img src={book} alt='' width='50' loading='lazy' />
 									</a>
 									<h3>Change Books</h3>
 								</div>
@@ -132,13 +133,13 @@ export const Login = () => {
 						</form>
 						<div
 							className={
-								alert === ''
+								!alert || !loginMessage
 									? 'alert alert-danger my-5 text-center d-none'
 									: 'alert alert-danger my-5 text-center'
 							}
 							role='alert'
 						>
-							{alert}
+							{alert ?? loginMessage}
 						</div>
 					</div>
 					<div className='col-md-4'></div>

@@ -9,17 +9,28 @@ const bookSlice = createSlice({
 	name: 'book',
 	initialState,
 	reducers: {
+		resetBook: () => initialState,
 		setRecentBook: (state, action) => {
-			state.recentsBook.push(action.payload);
+			return {
+				...state,
+				recentsBook: action.payload,
+			};
 		},
 		setFeaturesBooks: (state, action) => {
-			state.featuresBook.push(action.payload);
+			return {
+				...state,
+				featuresBook: action.payload,
+			};
 		},
 		setOtherBook: (state, action) => {
-			state.otherBooks.push(action.payload);
+			return {
+				...state,
+				otherBooks: action.payload,
+			};
 		},
 	},
 });
 
-export const { setRecentBook, setFeaturesBooks, setOtherBook } = bookSlice.actions;
+export const { setRecentBook, setFeaturesBooks, setOtherBook, resetBook } =
+	bookSlice.actions;
 export default bookSlice.reducer;
