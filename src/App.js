@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { HomePage } from './pages/Home.page';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { ContactPage } from './pages/Contacts.page';
 import { UserBooksPage } from './pages/UserBooks.page';
 import { FavoritesPage } from './pages/Favorites.page';
-import  BuildinPage from './presentation/components/common/BuildinPage';
+import BuildinPage from './presentation/components/common/BuildinPage';
 import { Login } from './presentation/components/Login';
 import { Logup } from './presentation/components/Logup';
 import { EmailVerify } from './presentation/components/EmailVerify';
@@ -15,9 +15,16 @@ import { verifyAuth } from './services/auth.service';
 import { AddNewBookPage } from './pages/AddNewBook.page';
 import getCookie from './hooks/getCookie';
 import { Provider } from 'react-redux';
-import store  from './store/store';
+import store from './store/store';
+import {authentication} from './pages/Auth'
 
 const UserAuthenticated = auth => {
+	const isAuth = authentication.isAuthenticated;
+
+	const redirect = (from) => {
+		return <Navigate to="/login" state={{from}}/>;
+	  };
+
 	return (
 		<>
 			<Provider store={store}>
@@ -25,15 +32,15 @@ const UserAuthenticated = auth => {
 					<Routes>
 						<Route index path='/' element={<HomePage />} />
 						<Route path='/contacts' element={<ContactPage />} />
-						<Route path='/details' element={<BookDetails />} />
+						<Route path='/details' element={isAuth ? <BookDetails /> : redirect('/details')} />
 						<Route path='/login' element={<Login />} />
 						<Route path='/logout' element={<Logup />} />
-						<Route path='/my-books' element={<UserBooksPage />} />
-						<Route path='/my-favorites' element={<FavoritesPage />} />
+						<Route path='/my-books' element={isAuth ? <UserBooksPage /> : redirect('/my-books')} />
+						<Route path='/my-favorites' element={isAuth ? <FavoritesPage /> : redirect('/my-favorites')} />
 						<Route path='/messages' element={<BuildinPage />} />
 						<Route path='/email' element={<EmailVerify />} />
-						<Route path='/user-profile' element={<Profile />} />
-						<Route path='/add-new-book' element={<AddNewBookPage />} />
+						<Route path='/user-profile' element={isAuth ? <Profile /> : redirect('/user-profile')} />
+						<Route path='/add-new-book' element={isAuth ? <AddNewBookPage /> : redirect('/add-new-book')} />
 						<Route path='*' element={<HomePage />} />
 					</Routes>
 				</Router>

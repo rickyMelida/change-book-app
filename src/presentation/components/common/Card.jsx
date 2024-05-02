@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import bookmark from '../../../assets/images/bookmark.png';
 import bookmarkActive from '../../../assets/images/bookmark_active.png';
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,10 +6,16 @@ import avatar from '../../../assets/images/avatar.svg';
 import {
 	removeAsFavourite,
 	setFavourite,
+	getBooks,
 } from '../../../services/books.service';
 import { useDispatch, useSelector } from 'react-redux';
 import { verifyAuth } from '../../../services/auth.service';
 import { setMessageLogin } from '../../../slices/messages.slice';
+import {
+	setFeaturesBooks,
+	setOtherBook,
+	setRecentBook,
+} from '../../../slices/book.slices';
 
 const verifyUserInterested = (userInterested, userData) => {
 	if (userInterested) return userInterested.includes(userData.uid);
@@ -29,6 +35,7 @@ export const Card = ({ bookData }) => {
 		uid,
 		userInterested,
 	} = bookData;
+	const books = useSelector(state => state.book);
 
 	const userData = useSelector(state => state.auth);
 	const auth = userData?.stsTokenManager?.accessToken;
@@ -72,6 +79,13 @@ export const Card = ({ bookData }) => {
 						bookId: uid,
 					}).then(res => {
 						setMarkedAsFavourite(!markedAsFavourite);
+
+						getBooks(3).then(dd => {
+							const [featureData, recentData, othersData] = dd;
+							dispatch(setRecentBook(recentData));
+							dispatch(setFeaturesBooks(featureData));
+							dispatch(setOtherBook(othersData));
+						});
 					});
 					console.log('se desmarca');
 				} else {
@@ -80,6 +94,12 @@ export const Card = ({ bookData }) => {
 						bookId: uid,
 					}).then(res => {
 						setMarkedAsFavourite(!markedAsFavourite);
+						getBooks(3).then(dd => {
+							const [featureData, recentData, othersData] = dd;
+							dispatch(setRecentBook(recentData));
+							dispatch(setFeaturesBooks(featureData));
+							dispatch(setOtherBook(othersData));
+						});
 					});
 					console.log('se MARCA');
 				}

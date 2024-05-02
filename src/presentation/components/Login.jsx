@@ -1,12 +1,28 @@
 import React, { useRef, useState } from 'react';
 import { book } from '../../assets/images/images';
 import { signin } from '../../services/auth.service';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation, Navigate } from 'react-router-dom';
 import { Spinner } from './common/Spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../slices/auth.slice';
+import { authentication } from '../../pages/Auth';
+
+const validateLogin = (uid, url) => {
+	setTimeout(() => {
+		if (uid) {
+			return <Navigate to={url} />;
+		}
+	}, 2000);
+};
 
 export const Login = () => {
+	const location = useLocation();
+	const { from } = location.state;
+	const uid = localStorage.getItem('accessToken');
+
+	authentication();
+	validateLogin(uid, from);
+
 	const [textButton, setTextButton] = useState('Iniciar Sesión');
 	const [showPassword, setShowPassword] = useState('password');
 	const [alert, setAlert] = useState(undefined);
